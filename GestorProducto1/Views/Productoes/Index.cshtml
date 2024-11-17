@@ -1,0 +1,75 @@
+﻿@model IEnumerable<GestorProductoBack.Model.Producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescripcionProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CostoProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrecioVentaProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StockProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoriaProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bodega.NombreBodega)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Password)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostoProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecioVentaProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StockProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoriaProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bodega.NombreBodega)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.Password)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdProducto }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdProducto }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdProducto })
+        </td>
+    </tr>
+}
+
+</table>
