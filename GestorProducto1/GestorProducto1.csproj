@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BodegasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductoesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -196,6 +197,11 @@
     <Content Include="Views\Productoes\Details.cshtml" />
     <Content Include="Views\Productoes\Edit.cshtml" />
     <Content Include="Views\Productoes\Index.cshtml" />
+    <Content Include="Views\Bodegas\Create.cshtml" />
+    <Content Include="Views\Bodegas\Delete.cshtml" />
+    <Content Include="Views\Bodegas\Details.cshtml" />
+    <Content Include="Views\Bodegas\Edit.cshtml" />
+    <Content Include="Views\Bodegas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

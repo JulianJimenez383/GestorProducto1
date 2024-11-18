@@ -12,122 +12,119 @@ using GestorProductoBack.Repository;
 
 namespace GestorProducto1.Controllers
 {
-    public class ProductoesController : Controller
+    public class BodegasController : Controller
     {
         private InventarioDesarrolloWebEntities db = new InventarioDesarrolloWebEntities();
-        GestorRepository<Producto> data = new GestorRepository<Producto>();
+        GestorRepository<Bodega> data = new GestorRepository<Bodega>();
 
-        // GET: Productoes
+        // GET: Bodegas
         public async Task <ActionResult> Index()
         {
-            var producto = await db.Producto
-                .Include(p => p.Bodega)
-                .Include(p => p.Usuario)
+            var bodega = await db.Bodega
+                .Include(b => b.Usuario)
                 .ToListAsync();
-            return View(producto.ToList());
+                return View(bodega.ToList());
         }
 
-        // GET: Productoes/Details/5
+        // GET: Bodegas/Details/5
         public async Task <ActionResult> Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = await data.GetById(id);
-            if (producto == null)
+            Bodega bodega = await data.GetById(id);
+            if (bodega == null)
             {
                 return HttpNotFound();
             }
-            return View(producto);
+            return View(bodega);
         }
 
-        // GET: Productoes/Create
-        public ActionResult Create()
+        // GET: Bodegas/Create
+        public async Task<ActionResult> Create()
         {
-            ViewBag.IdBodega = new SelectList(db.Bodega, "IdBodega", "IdBodega");
-            ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "IdUsuario");
-            return View();
+            var bodegas = await db.Bodega.ToListAsync();
+            var usuarios = await db.Usuario.ToListAsync();
 
+            ViewBag.IdUsuario = new SelectList(usuarios, "IdUsuario", "IdUsuario"); // Cambia "Password" por un campo más apropiado.
+
+            return View();
         }
 
-        // POST: Productoes/Create
+        // POST: Bodegas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task <ActionResult> Create([Bind(Include = "IdProducto,IdBodega,NombreProducto,DescripcionProducto,CostoProducto,PrecioVentaProducto,StockProducto,CategoriaProducto,IdUsuario")] Producto producto)
+        public async Task <ActionResult> Create([Bind(Include = "IdBodega,NombreBodega,PaisBodega,DepartamentoBodega,CiudadBodega,IdUsuario")] Bodega bodega)
         {
             if (ModelState.IsValid)
             {
-                await data.Create(producto);
+                await data.Create(bodega);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdBodega = new SelectList(db.Bodega, "IdBodega", "NombreBodega", producto.IdBodega);
-            ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "Password", producto.IdUsuario);
-            return View(producto);
+            ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "Password", bodega.IdUsuario);
+            return View(bodega);
         }
 
-        // GET: Productoes/Edit/5
+        // GET: Bodegas/Edit/5
         public async Task <ActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = await data.GetById(id);
-            
-            if (producto == null)
+            Bodega bodega = await data.GetById(id);
+            if (bodega == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdBodega = new SelectList(db.Bodega, "IdBodega", "IdBodega", producto.IdBodega);
-            ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "IdUsuario", producto.IdUsuario);
-            return View(producto);
+            ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "IdUsuario", bodega.IdUsuario);
+            return View(bodega);
         }
 
-        // POST: Productoes/Edit/5
+        // POST: Bodegas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task <ActionResult> Edit([Bind(Include = "IdProducto,IdBodega,NombreProducto,DescripcionProducto,CostoProducto,PrecioVentaProducto,StockProducto,CategoriaProducto,IdUsuario")] Producto producto)
+        public async Task <ActionResult> Edit([Bind(Include = "IdBodega,NombreBodega,PaisBodega,DepartamentoBodega,CiudadBodega,IdUsuario")] Bodega bodega)
         {
             if (ModelState.IsValid)
             {
-                await data.Update(producto);
+                await data.Update(bodega);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdBodega = new SelectList(db.Bodega, "IdBodega", "IdBodega", producto.IdBodega);
-            ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "IdUsuario", producto.IdUsuario);
-            return View(producto);
+            ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "Password", bodega.IdUsuario);
+            return View(bodega);
         }
 
-        // GET: Productoes/Delete/5
+        // GET: Bodegas/Delete/5
         public async Task <ActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = await data.GetById(id);
-            if (producto == null)
+            Bodega bodega = await data.GetById(id);
+            if (bodega == null)
             {
                 return HttpNotFound();
             }
-            return View(producto);
+            return View(bodega);
         }
 
-        // POST: Productoes/Delete/5
+        // POST: Bodegas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task <ActionResult> DeleteConfirmed(string id)
+        public async Task  <ActionResult> DeleteConfirmed(string id)
         {
-            Producto producto = await data.GetById(id);
-            await data.Delete(producto);
+            Bodega bodega = await data.GetById(id);
+            await data.Delete(bodega);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

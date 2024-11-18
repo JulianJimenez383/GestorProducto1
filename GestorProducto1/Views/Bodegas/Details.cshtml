@@ -1,0 +1,58 @@
+﻿@model GestorProductoBack.Model.Bodega
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bodega</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreBodega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreBodega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaisBodega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaisBodega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartamentoBodega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartamentoBodega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CiudadBodega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CiudadBodega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Password)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdBodega }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
