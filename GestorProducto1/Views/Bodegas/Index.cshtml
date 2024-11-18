@@ -24,7 +24,7 @@
             @Html.DisplayNameFor(model => model.CiudadBodega)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Usuario.Password)
+            @Html.DisplayNameFor(model => model.Usuario.IdUsuario)
         </th>
         <th></th>
     </tr>
@@ -44,7 +44,7 @@
             @Html.DisplayFor(modelItem => item.CiudadBodega)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Usuario.Password)
+            @Html.DisplayFor(modelItem => item.Usuario.IdUsuario)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IdBodega }) |
