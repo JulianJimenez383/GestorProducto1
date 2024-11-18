@@ -129,6 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BodegasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductoesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -202,6 +203,8 @@
     <Content Include="Views\Bodegas\Details.cshtml" />
     <Content Include="Views\Bodegas\Edit.cshtml" />
     <Content Include="Views\Bodegas\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAut.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
