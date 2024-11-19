@@ -24,7 +24,7 @@
                 <p>  &nbsp;</p>
 
                 <!--form es una accion que redireccionara aun controlador-->
-                <form action="~/Home/Contact" method="post">
+                <form action="~/Views/Home/Index.cshtml" method="post">
 
                     <div data-mdb-input-init class="form-outline mb-4">
                         <label class="form-label" for="form3Example3">Usuario</label>
@@ -52,90 +52,92 @@
                 </form>
 
                     <!--  CREACION DE MODAL PARA EL REGISTRO DE UN USUARIO  -->
-                    <div class="text-center text-lg-start mt-4 pt-2">
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#crear" class="btn btn-secondary "
-                                style="padding-left: 2.5rem; padding-right: 2.5rem;">
-                            Registrarse
-                        </button>
+                <div class="text-center text-lg-start mt-4 pt-2">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#crear" class="btn btn-secondary "
+                            style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                        Registrarse
+                    </button>
 
-                        <div class="modal fade" id="crear" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <a class="navbar-brand" href="#">
-                                            <img src="~/Imagenes/PC.png" alt="" width="45" height="35" class="d-inline-block align-text-top">
-                                        </a>
-                                        <h5 class="modal-title" id="exampleModalToggleLabel">REGISTRO</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <!--  CONTENIDO DEL REGISTRO DE USUARIO -->
-                                        <div class="container text-center">
-                                            <div class="row justify-content-md-center">
-                                                <div class="col-md-auto">
+                    <div class="modal fade" id="crear" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <a class="navbar-brand" href="#">
+                                        <img src="~/Imagenes/PC.png" alt="" width="45" height="35" class="d-inline-block align-text-top">
+                                    </a>
+                                    <h5 class="modal-title" id="exampleModalToggleLabel">REGISTRO</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!--  CONTENIDO DEL REGISTRO DE USUARIO -->
+                                    <div class="container text-center">
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md-auto">
 
-                                                    <br />
-                                                    <div class="">
-                                                        <label runat="server" id="label1" class="form-label"> IdUsuario </label>
-                                                        <input runat="server" type="text" class="form-control" id="inputCedula" placeholder="id" />
-                                                    </div>
-                                                    <br />
-                                                    <div class="">
-                                                        <label runat="server" id="label2" class="form-label">Nombre: </label>
-                                                        <input runat="server" type="text" class="form-control" id="inputNombre" placeholder="nombre" />
-                                                    </div>
-                                                    <br />
-                                                    <div class="">
-                                                        <label runat="server" id="label3" class="form-label"> Apellido </label>
-                                                        <input runat="server" type="text" class="form-control" id="inputApellido" placeholder="apellido" />
-                                                    </div>
-                                                    <br />
-                                                    <div class="">
-                                                        <label runat="server" id="label4" class="form-label">Correo: </label>
-                                                        <input runat="server" type="email" class="form-control" id="inputCorreo" placeholder="correo" />
-                                                    </div>
-                                                    <br />
-                                                    <div class="">
-                                                        <label runat="server" id="label6" class="form-label">Fecha Nacimiento</label>
-                                                        <input runat="server" type="password" class="form-control" id="inputContraseña1" placeholder="fecha nacimiento" />
-                                                    </div>
-                                                    <br />
-                                                    <div class="">
-                                                        <label runat="server" id="label5" class="form-label">Contraseña</label>
-                                                        <input runat="server" type="password" class="form-control" id="inputContraseña" placeholder="contraseña" />
-                                                    </div>
-                                                    <br />
-                                                    <div class="">
-                                                        <label runat="server" id="label7" class="form-label">Contraseña: </label>
-                                                        <input runat="server" type="password" class="form-control" id="inputContraseña1" placeholder="confirme contraseña" />
-                                                    </div>
-                                                    <br />
-                                                    <div class="">
-                                                        <label id="label7" for="inputState" class="form-label">Cargo</label>
-                                                        <select id="input8" runat="server" class="form-select" type="text">
-                                                            <option value="">--Selecciona una Opcion--</option>
-                                                            <option value="">Jefe Bodega</option>
-                                                            <option value="">Almacenista</option>
-                                                            <option value="Puebas">Puebas</option>
-                                                        </select>
-                                                    </div>
-                                                    <br />
+                                                <br />
+                                                <div class="">
+                                                    <label runat="server" id="label1" class="form-label"> IdUsuario </label>
+                                                    <input runat="server" type="text" class="form-control" id="inputCedula" placeholder="id" />
                                                 </div>
+                                                <br />
+                                                <div class="">
+                                                    <label runat="server" id="label2" class="form-label">Nombre: </label>
+                                                    <input runat="server" type="text" class="form-control" id="inputNombre" placeholder="nombre" />
+                                                </div>
+                                                <br />
+                                                <div class="">
+                                                    <label runat="server" id="label3" class="form-label"> Apellido </label>
+                                                    <input runat="server" type="text" class="form-control" id="inputApellido" placeholder="apellido" />
+                                                </div>
+                                                <br />
+                                                <div class="">
+                                                    <label runat="server" id="label4" class="form-label">Correo: </label>
+                                                    <input runat="server" type="email" class="form-control" id="inputCorreo" placeholder="correo" />
+                                                </div>
+                                                <br />
+                                                <div class="">
+                                                    <label runat="server" id="label6" class="form-label">Fecha Nacimiento</label>
+                                                    <input runat="server" type="password" class="form-control" id="inputContraseña1" placeholder="fecha nacimiento" />
+                                                </div>
+                                                <br />
+                                                <div class="">
+                                                    <label runat="server" id="label5" class="form-label">Contraseña</label>
+                                                    <input runat="server" type="password" class="form-control" id="inputContraseña" placeholder="contraseña" />
+                                                </div>
+                                                <br />
+                                                <div class="">
+                                                    <label runat="server" id="label7" class="form-label">Contraseña: </label>
+                                                    <input runat="server" type="password" class="form-control" id="inputContraseña1" placeholder="confirme contraseña" />
+                                                </div>
+                                                <br />
+                                                <div class="">
+                                                    <label id="label7" for="inputState" class="form-label">Cargo</label>
+                                                    <select id="input8" runat="server" class="form-select" type="text">
+                                                        <option value="">--Selecciona una Opcion--</option>
+                                                        <option value="">Jefe Bodega</option>
+                                                        <option value="">Almacenista</option>
+                                                        <option value="Puebas">Puebas</option>
+                                                    </select>
+                                                </div>
+                                                <br />
                                             </div>
                                         </div>
+                                    </div>
 
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
-                                        <br />
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+                                    <br />
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
+                    <asp:Button ID="Button1" runat="server" Text="Ingresar" class="btn btn-danger btn-lg" OnClick="button_click1" />
+
+
+                </div>
+
 
                     &nbsp;</p>
 
