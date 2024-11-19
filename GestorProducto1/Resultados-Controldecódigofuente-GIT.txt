@@ -1,0 +1,302 @@
+﻿Cloning into 'C:\Users\carlo\Source\Repos\GestorProducto1'...
+POST git-upload-pack (185 bytes)
+POST git-upload-pack (262 bytes)
+Remote: Enumerating objects: 178, done.        
+Remote: Counting objects:   0% (1/178)        
+Remote: Counting objects:   1% (2/178)        
+Remote: Counting objects:   2% (4/178)        
+Remote: Counting objects:   3% (6/178)        
+Remote: Counting objects:   4% (8/178)        
+Remote: Counting objects:   5% (9/178)        
+Remote: Counting objects:   6% (11/178)        
+Remote: Counting objects:   7% (13/178)        
+Remote: Counting objects:   8% (15/178)        
+Remote: Counting objects:   9% (17/178)        
+Remote: Counting objects:  10% (18/178)        
+Remote: Counting objects:  11% (20/178)        
+Remote: Counting objects:  12% (22/178)        
+Remote: Counting objects:  13% (24/178)        
+Remote: Counting objects:  14% (25/178)        
+Remote: Counting objects:  15% (27/178)        
+Remote: Counting objects:  16% (29/178)        
+Remote: Counting objects:  17% (31/178)        
+Remote: Counting objects:  18% (33/178)        
+Remote: Counting objects:  19% (34/178)        
+Remote: Counting objects:  20% (36/178)        
+Remote: Counting objects:  21% (38/178)        
+Remote: Counting objects:  22% (40/178)        
+Remote: Counting objects:  23% (41/178)        
+Remote: Counting objects:  24% (43/178)        
+Remote: Counting objects:  25% (45/178)        
+Remote: Counting objects:  26% (47/178)        
+Remote: Counting objects:  27% (49/178)        
+Remote: Counting objects:  28% (50/178)        
+Remote: Counting objects:  29% (52/178)        
+Remote: Counting objects:  30% (54/178)        
+Remote: Counting objects:  31% (56/178)        
+Remote: Counting objects:  32% (57/178)        
+Remote: Counting objects:  33% (59/178)        
+Remote: Counting objects:  34% (61/178)        
+Remote: Counting objects:  35% (63/178)        
+Remote: Counting objects:  36% (65/178)        
+Remote: Counting objects:  37% (66/178)        
+Remote: Counting objects:  38% (68/178)        
+Remote: Counting objects:  39% (70/178)        
+Remote: Counting objects:  40% (72/178)        
+Remote: Counting objects:  41% (73/178)        
+Remote: Counting objects:  42% (75/178)        
+Remote: Counting objects:  43% (77/178)        
+Remote: Counting objects:  44% (79/178)        
+Remote: Counting objects:  45% (81/178)        
+Remote: Counting objects:  46% (82/178)        
+Remote: Counting objects:  47% (84/178)        
+Remote: Counting objects:  48% (86/178)        
+Remote: Counting objects:  49% (88/178)        
+Remote: Counting objects:  50% (89/178)        
+Remote: Counting objects:  51% (91/178)        
+Remote: Counting objects:  52% (93/178)        
+Remote: Counting objects:  53% (95/178)        
+Remote: Counting objects:  54% (97/178)        
+Remote: Counting objects:  55% (98/178)        
+Remote: Counting objects:  56% (100/178)        
+Remote: Counting objects:  57% (102/178)        
+Remote: Counting objects:  58% (104/178)        
+Remote: Counting objects:  59% (106/178)        
+Remote: Counting objects:  60% (107/178)        
+Remote: Counting objects:  61% (109/178)        
+Remote: Counting objects:  62% (111/178)        
+Remote: Counting objects:  63% (113/178)        
+Remote: Counting objects:  64% (114/178)        
+Remote: Counting objects:  65% (116/178)        
+Remote: Counting objects:  66% (118/178)        
+Remote: Counting objects:  67% (120/178)        
+Remote: Counting objects:  68% (122/178)        
+Remote: Counting objects:  69% (123/178)        
+Remote: Counting objects:  70% (125/178)        
+Remote: Counting objects:  71% (127/178)        
+Remote: Counting objects:  72% (129/178)        
+Remote: Counting objects:  73% (130/178)        
+Remote: Counting objects:  74% (132/178)        
+Remote: Counting objects:  75% (134/178)        
+Remote: Counting objects:  76% (136/178)        
+Remote: Counting objects:  77% (138/178)        
+Remote: Counting objects:  78% (139/178)        
+Remote: Counting objects:  79% (141/178)        
+Remote: Counting objects:  80% (143/178)        
+Remote: Counting objects:  81% (145/178)        
+Remote: Counting objects:  82% (146/178)        
+Remote: Counting objects:  83% (148/178)        
+Remote: Counting objects:  84% (150/178)        
+Remote: Counting objects:  85% (152/178)        
+Remote: Counting objects:  86% (154/178)        
+Remote: Counting objects:  87% (155/178)        
+Remote: Counting objects:  88% (157/178)        
+Remote: Counting objects:  89% (159/178)        
+Remote: Counting objects:  90% (161/178)        
+Remote: Counting objects:  91% (162/178)        
+Remote: Counting objects:  92% (164/178)        
+Remote: Counting objects:  93% (166/178)        
+Remote: Counting objects:  94% (168/178)        
+Remote: Counting objects:  95% (170/178)        
+Remote: Counting objects:  96% (171/178)        
+Remote: Counting objects:  97% (173/178)        
+Remote: Counting objects:  98% (175/178)        
+Remote: Counting objects:  99% (177/178)        
+Remote: Counting objects: 100% (178/178)        
+Remote: Counting objects: 100% (178/178), done.        
+Remote: Compressing objects:   1% (1/98)        
+Remote: Compressing objects:   2% (2/98)        
+Remote: Compressing objects:   3% (3/98)        
+Remote: Compressing objects:   4% (4/98)        
+Remote: Compressing objects:   5% (5/98)        
+Remote: Compressing objects:   6% (6/98)        
+Remote: Compressing objects:   7% (7/98)        
+Remote: Compressing objects:   8% (8/98)        
+Remote: Compressing objects:   9% (9/98)        
+Remote: Compressing objects:  10% (10/98)        
+Remote: Compressing objects:  11% (11/98)        
+Remote: Compressing objects:  12% (12/98)        
+Remote: Compressing objects:  13% (13/98)        
+Remote: Compressing objects:  14% (14/98)        
+Remote: Compressing objects:  15% (15/98)        
+Remote: Compressing objects:  16% (16/98)        
+Remote: Compressing objects:  17% (17/98)        
+Remote: Compressing objects:  18% (18/98)        
+Remote: Compressing objects:  19% (19/98)        
+Remote: Compressing objects:  20% (20/98)        
+Remote: Compressing objects:  21% (21/98)        
+Remote: Compressing objects:  22% (22/98)        
+Remote: Compressing objects:  23% (23/98)        
+Remote: Compressing objects:  24% (24/98)        
+Remote: Compressing objects:  25% (25/98)        
+Remote: Compressing objects:  26% (26/98)        
+Remote: Compressing objects:  27% (27/98)        
+Remote: Compressing objects:  28% (28/98)        
+Remote: Compressing objects:  29% (29/98)        
+Remote: Compressing objects:  30% (30/98)        
+Remote: Compressing objects:  31% (31/98)        
+Remote: Compressing objects:  32% (32/98)        
+Remote: Compressing objects:  33% (33/98)        
+Remote: Compressing objects:  34% (34/98)        
+Remote: Compressing objects:  35% (35/98)        
+Remote: Compressing objects:  36% (36/98)        
+Remote: Compressing objects:  37% (37/98)        
+Remote: Compressing objects:  38% (38/98)        
+Remote: Compressing objects:  39% (39/98)        
+Remote: Compressing objects:  40% (40/98)        
+Remote: Compressing objects:  41% (41/98)        
+Remote: Compressing objects:  42% (42/98)        
+Remote: Compressing objects:  43% (43/98)        
+Remote: Compressing objects:  44% (44/98)        
+Remote: Compressing objects:  45% (45/98)        
+Remote: Compressing objects:  46% (46/98)        
+Remote: Compressing objects:  47% (47/98)        
+Remote: Compressing objects:  48% (48/98)        
+Remote: Compressing objects:  50% (49/98)        
+Remote: Compressing objects:  51% (50/98)        
+Remote: Compressing objects:  52% (51/98)        
+Remote: Compressing objects:  53% (52/98)        
+Remote: Compressing objects:  54% (53/98)        
+Remote: Compressing objects:  55% (54/98)        
+Remote: Compressing objects:  56% (55/98)        
+Remote: Compressing objects:  57% (56/98)        
+Remote: Compressing objects:  58% (57/98)        
+Remote: Compressing objects:  59% (58/98)        
+Remote: Compressing objects:  60% (59/98)        
+Remote: Compressing objects:  61% (60/98)        
+Remote: Compressing objects:  62% (61/98)        
+Remote: Compressing objects:  63% (62/98)        
+Remote: Compressing objects:  64% (63/98)        
+Remote: Compressing objects:  65% (64/98)        
+Remote: Compressing objects:  66% (65/98)        
+Remote: Compressing objects:  67% (66/98)        
+Remote: Compressing objects:  68% (67/98)        
+Remote: Compressing objects:  69% (68/98)        
+Remote: Compressing objects:  70% (69/98)        
+Remote: Compressing objects:  71% (70/98)        
+Remote: Compressing objects:  72% (71/98)        
+Remote: Compressing objects:  73% (72/98)        
+Remote: Compressing objects:  74% (73/98)        
+Remote: Compressing objects:  75% (74/98)        
+Remote: Compressing objects:  76% (75/98)        
+Remote: Compressing objects:  77% (76/98)        
+Remote: Compressing objects:  78% (77/98)        
+Remote: Compressing objects:  79% (78/98)        
+Remote: Compressing objects:  80% (79/98)        
+Remote: Compressing objects:  81% (80/98)        
+Remote: Compressing objects:  82% (81/98)        
+Remote: Compressing objects:  83% (82/98)        
+Remote: Compressing objects:  84% (83/98)        
+Remote: Compressing objects:  85% (84/98)        
+Remote: Compressing objects:  86% (85/98)        
+Remote: Compressing objects:  87% (86/98)        
+Remote: Compressing objects:  88% (87/98)        
+Remote: Compressing objects:  89% (88/98)        
+Remote: Compressing objects:  90% (89/98)        
+Remote: Compressing objects:  91% (90/98)        
+Remote: Compressing objects:  92% (91/98)        
+Remote: Compressing objects:  93% (92/98)        
+Remote: Compressing objects:  94% (93/98)        
+Remote: Compressing objects:  95% (94/98)        
+Remote: Compressing objects:  96% (95/98)        
+Remote: Compressing objects:  97% (96/98)        
+Remote: Compressing objects:  98% (97/98)        
+Remote: Compressing objects: 100% (98/98)        
+Remote: Compressing objects: 100% (98/98), done.        
+Remote: Total 178 (delta 84), reused 170 (delta 76), pack-reused 0 (from 0)        
+Abriendo los repositorios:
+C:\Users\carlo\Source\Repos\GestorProducto1
+Remote: Enumerating objects: 27, done.        
+Remote: Counting objects:   3% (1/27)        
+Remote: Counting objects:   7% (2/27)        
+Remote: Counting objects:  11% (3/27)        
+Remote: Counting objects:  14% (4/27)        
+Remote: Counting objects:  18% (5/27)        
+Remote: Counting objects:  22% (6/27)        
+Remote: Counting objects:  25% (7/27)        
+Remote: Counting objects:  29% (8/27)        
+Remote: Counting objects:  33% (9/27)        
+Remote: Counting objects:  37% (10/27)        
+Remote: Counting objects:  40% (11/27)        
+Remote: Counting objects:  44% (12/27)        
+Remote: Counting objects:  48% (13/27)        
+Remote: Counting objects:  51% (14/27)        
+Remote: Counting objects:  55% (15/27)        
+Remote: Counting objects:  59% (16/27)        
+Remote: Counting objects:  62% (17/27)        
+Remote: Counting objects:  66% (18/27)        
+Remote: Counting objects:  70% (19/27)        
+Remote: Counting objects:  74% (20/27)        
+Remote: Counting objects:  77% (21/27)        
+Remote: Counting objects:  81% (22/27)        
+Remote: Counting objects:  85% (23/27)        
+Remote: Counting objects:  88% (24/27)        
+Remote: Counting objects:  92% (25/27)        
+Remote: Counting objects:  96% (26/27)        
+Remote: Counting objects: 100% (27/27)        
+Remote: Counting objects: 100% (27/27), done.        
+Remote: Compressing objects:  14% (1/7)        
+Remote: Compressing objects:  28% (2/7)        
+Remote: Compressing objects:  42% (3/7)        
+Remote: Compressing objects:  57% (4/7)        
+Remote: Compressing objects:  71% (5/7)        
+Remote: Compressing objects:  85% (6/7)        
+Remote: Compressing objects: 100% (7/7)        
+Remote: Compressing objects: 100% (7/7), done.        
+Remote: Total 17 (delta 9), reused 17 (delta 9), pack-reused 0 (from 0)        
+From https://github.com/JulianJimenez383/GestorProducto1
+   e2b365a..5a0126b  master     -> origin/master
+Updating e2b365a..5a0126b
+Se creó la confirmación 910e7a06 localmente en el repositorio C:\Users\carlo\Source\Repos\GestorProducto1
+Enviando cambios de master
+Remote: Permission to JulianJimenez383/GestorProducto1.git denied to mno38540.
+Se produjo un error al insertar en el repositorio remoto: Git failed with a fatal error.
+Git failed with a fatal error.
+unable to access 'https://github.com/JulianJimenez383/GestorProducto1.git/': The requested URL returned error: 403
+
+Error al insertar en el repositorio remoto. Consulte la ventana Resultados para obtener más detalles.
+Enviando cambios de master
+Remote: Permission to JulianJimenez383/GestorProducto1.git denied to mno38540.
+Se produjo un error al insertar en el repositorio remoto: Git failed with a fatal error.
+Git failed with a fatal error.
+unable to access 'https://github.com/JulianJimenez383/GestorProducto1.git/': The requested URL returned error: 403
+
+Error al insertar en el repositorio remoto. Consulte la ventana Resultados para obtener más detalles.
+Enviando cambios de master
+Remote: Permission to JulianJimenez383/GestorProducto1.git denied to mno38540.
+Se produjo un error al insertar en el repositorio remoto: Git failed with a fatal error.
+Git failed with a fatal error.
+unable to access 'https://github.com/JulianJimenez383/GestorProducto1.git/': The requested URL returned error: 403
+
+Error al insertar en el repositorio remoto. Consulte la ventana Resultados para obtener más detalles.
+Enviando cambios de master
+Remote: Permission to JulianJimenez383/GestorProducto1.git denied to mno38540.
+Se produjo un error al insertar en el repositorio remoto: Git failed with a fatal error.
+Git failed with a fatal error.
+unable to access 'https://github.com/JulianJimenez383/GestorProducto1.git/': The requested URL returned error: 403
+
+Error al insertar en el repositorio remoto. Consulte la ventana Resultados para obtener más detalles.
+Se creó la confirmación 62252a32 localmente en el repositorio C:\Users\carlo\Source\Repos\GestorProducto1
+Enviando cambios de master
+Remote: Permission to JulianJimenez383/GestorProducto1.git denied to mno38540.
+Se produjo un error al insertar en el repositorio remoto: Git failed with a fatal error.
+Git failed with a fatal error.
+unable to access 'https://github.com/JulianJimenez383/GestorProducto1.git/': The requested URL returned error: 403
+
+Error al insertar en el repositorio remoto. Consulte la ventana Resultados para obtener más detalles.
+Switched to a new branch 'Andres'
+refs/heads/master desprotegido en el repositorio C:\Users\carlo\Source\Repos\GestorProducto1
+Enviando cambios de Andres
+Remote: Permission to JulianJimenez383/GestorProducto1.git denied to mno38540.
+Se produjo un error al insertar en el repositorio remoto: Git failed with a fatal error.
+Git failed with a fatal error.
+unable to access 'https://github.com/JulianJimenez383/GestorProducto1.git/': The requested URL returned error: 403
+
+Error al insertar en el repositorio remoto. Consulte la ventana Resultados para obtener más detalles.
+Enviando cambios de Andres
+Remote: Permission to JulianJimenez383/GestorProducto1.git denied to mno38540.
+Se produjo un error al insertar en el repositorio remoto: Git failed with a fatal error.
+Git failed with a fatal error.
+unable to access 'https://github.com/JulianJimenez383/GestorProducto1.git/': The requested URL returned error: 403
+
+Error al insertar en el repositorio remoto. Consulte la ventana Resultados para obtener más detalles.
