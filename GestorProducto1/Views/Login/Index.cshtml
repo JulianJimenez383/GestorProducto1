@@ -24,17 +24,17 @@
                 <p>  &nbsp;</p>
 
                 <!--form es una accion que redireccionara aun controlador-->
-                <form action="~/Views/Home/Index.cshtml" method="post">
+                <form action="View/Home/Index" method="post">
 
                     <div data-mdb-input-init class="form-outline mb-4">
                         <label class="form-label" for="form3Example3">Usuario</label>
-                        <input type="email" id="log1" class="form-control form-control-lg" placeholder="usuario" runat="server" />
+                        <input type="text" id="log1" class="form-control form-control-lg" placeholder="usuario" runat="server" />
                     </div>
 
 
                     <div data-mdb-input-init class="form-outline mb-3">
                         <label class="form-label" for="form3Example4">Contraseña </label>
-                        <input type="password" id="log2" class="form-control form-control-lg" placeholder="contraseña" runat="server" />
+                        <input type="text" id="log2" class="form-control form-control-lg" placeholder="contraseña" runat="server" />
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center">
@@ -133,13 +133,6 @@
                             </div>
                         </div>
                     </div>
-                    <asp:Button ID="Button1" runat="server" Text="Ingresar" class="btn btn-danger btn-lg" OnClick="button_click1" />
-
-
-                </div>
-
-
-                    &nbsp;</p>
 
                     &nbsp;</p>
 
@@ -150,9 +143,10 @@
     <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-secondary">
 
         <div class="text-white mb-3 mb-md-0">
-            Copyright © 2024. Todos los derechos reservados.
+            Gestor Inventario © 2025.
         </div>
     </div>
+        </div>
 </section>
 
 <!-- ESTE MODAL SE RECARGA CON LA RESPUESTA DEL SERVIDOR-->
