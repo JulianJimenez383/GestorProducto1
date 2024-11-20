@@ -21,15 +21,20 @@ namespace GestorProducto1.Controllers
 
             try
             {
-                if (usu != null)
+                if (vista.IdUsuario == usu)
                 {
-                    if (vista. == contra)
+                    if (vista.Password == contra)
                     {
                         return RedirectToAction("Home", "Index");
                     }
-                    throw new Exception("Contraseña invalidas");
+                throw new Exception("Contraseña invalidas");
                 }
-                throw new Exception("Coreo invalidas");
+                if (usu != null)
+
+                {
+                    throw new Exception("Coreo invalidas");
+                }
+
             }
             catch (Exception ex)
             {
