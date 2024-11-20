@@ -23,7 +23,7 @@ namespace GestorProducto1.Controllers
             {
                 if (usu != null)
                 {
-                    if (vista.Password == contra)
+                    if (vista. == contra)
                     {
                         return RedirectToAction("Home", "Index");
                     }
