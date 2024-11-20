@@ -19,16 +19,24 @@ namespace GestorProducto1.Controllers
 
             var vista = new Usuario();
 
-            if (usu == null || contra == null) { 
-                return View(vista); 
-            
-            
+            try
+            {
+                if (usu != null)
+                {
+                    if (vista.Password == contra)
+                    {
+                        return RedirectToAction("Home", "Index");
+                    }
+                    throw new Exception("Contraseña invalidas");
+                }
+                throw new Exception("Coreo invalidas");
+            }
+            catch (Exception ex)
+            {
+                
             }
 
-
-
-
-            return View();
-        }
+            return View(vista);
+        }      
     }
 }
