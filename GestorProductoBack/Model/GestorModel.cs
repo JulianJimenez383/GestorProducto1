@@ -12,6 +12,11 @@ namespace GestorProductoBack.Model
 
         public IEnumerable<Producto> productos { get; set; }
 
+        public class MensajeViewModel
+        {
+            public string Mensaje { get; set; }
+        }
+
 
     }
 }

@@ -25,7 +25,7 @@
 
                 <!--form es una accion que redireccionara aun controlador-->
 
-                <form  method="post">
+                <form method="post">
 
                     <div data-mdb-input-init class="form-outline mb-4">
                         <label class="form-label" for="form3Example3">Usuario</label>
@@ -46,12 +46,14 @@
                                 Recordarme
                             </label>
                         </div>
-                        <a href="Recuperacion.aspx" class="text-body"> Olvidaste la contraseña?</a>
+                        <!-- <a fref="" class="text-body"> Olvidaste la contraseña?</a>    -->
+                        @Html.ActionLink("¿Olvidaste la contraseña?", "Index", "RecuperarContraseña", null, new { @class = "text-body" })
                     </div>
                     <br />
                     <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-
-                </form>
+                    <asp:Label name="labelMensaje" runat="server" Text=""></asp:Label>                  
+                    
+                    </form>
 
 
 

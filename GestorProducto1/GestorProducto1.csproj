@@ -132,6 +132,7 @@
     <Compile Include="Controllers\InicioSesionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductoesController.cs" />
+    <Compile Include="Controllers\RecuperarContraseñaController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2074,6 +2075,7 @@
     <Content Include="Templates\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Templates\vendor\jquery\jquery.min.map" />
     <Content Include="Templates\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Views\RecuperarContraseña\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
