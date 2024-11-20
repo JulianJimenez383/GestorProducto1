@@ -2,6 +2,7 @@
 using GestorProductoBack.Repository;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,33 +14,44 @@ namespace GestorProducto1.Controllers
 
         private InventarioDesarrolloWebEntities db = new InventarioDesarrolloWebEntities();
         GestorRepository<Usuario> data = new GestorRepository<Usuario>();
-        
-        
-            // GET: Login
-            public ActionResult Index(string usu , string contra)
+
+      
+
+
+        // GET: Login
+        public ActionResult Index(string cedula , string contra)
             {
 
-            var registro = db.Usuario
-                .Where( x => x.IdUsuario == usu).FirstOrDefault();
-            try
+            
+            if (string.IsNullOrEmpty(cedula) || string.IsNullOrEmpty(contra))
             {
-                if (registro != null)
+                ViewBag.Error = "El usuario y la contraseña son obligatorios.";
+                return View();
+            }
+
+            // Buscar al usuario en la base de datos
+            var u = db.Usuario.FirstOrDefault(x => x.IdUsuario == cedula);
+
+            if(u != null)
+            {
+                if(u.IdUsuario == cedula )
                 {
-                    if (registro.Password == contra)
+                    if(u.Password == contra)
                     {
-                        return RedirectToAction("Home", "Index");
-                        
+                        Session["usuario"] = u;
+
+                        return RedirectToAction("Index", "Home");
                     }
-                throw new Exception("Contraseña invalidas");
+
                 }
-                throw new Exception("Coreo invalidas");
-
             }
-            catch (Exception ex)
-            {    
-            }
-            return View(registro);
 
-        }      
-    }
+           return View();
+            
+        }
+
+
+
+    }      
+    
 }
