@@ -13,35 +13,33 @@ namespace GestorProducto1.Controllers
 
         private InventarioDesarrolloWebEntities db = new InventarioDesarrolloWebEntities();
         GestorRepository<Usuario> data = new GestorRepository<Usuario>();
-        // GET: Login
-        public ActionResult Index(string usu , string contra)
-        {
+        
+        
+            // GET: Login
+            public ActionResult Index(string usu , string contra)
+            {
 
-            var vista = new Usuario();
-
+            var registro = db.Usuario
+                .Where( x => x.IdUsuario == usu).FirstOrDefault();
             try
             {
-                if (vista.IdUsuario == usu)
+                if (registro != null)
                 {
-                    if (vista.Password == contra)
+                    if (registro.Password == contra)
                     {
                         return RedirectToAction("Home", "Index");
+                        
                     }
                 throw new Exception("Contraseña invalidas");
                 }
-                if (usu != null)
-
-                {
-                    throw new Exception("Coreo invalidas");
-                }
+                throw new Exception("Coreo invalidas");
 
             }
             catch (Exception ex)
-            {
-                
+            {    
             }
+            return View(registro);
 
-            return View(vista);
         }      
     }
 }
