@@ -37,7 +37,7 @@ namespace GestorProducto1.Controllers
                 if(u.IdUsuario == cedula && u.Password == contra)
                 {                
                         Session["usuario"] = u;
-                        return RedirectToAction("Index", "Home");           
+                    return RedirectToAction("Index", "Home");           
                 }
             }
            return View();            

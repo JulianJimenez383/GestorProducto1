@@ -20,6 +20,10 @@ namespace GestorProducto1.Controllers
         // GET: Productoes
         public async Task <ActionResult> Index()
         {
+            //var temoral
+            var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
+
             var producto = await db.Producto
                 .Include(p => p.Bodega)
                 .Include(p => p.Usuario)

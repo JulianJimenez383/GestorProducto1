@@ -20,6 +20,10 @@ namespace GestorProducto1.Controllers
         // GET: Bodegas
         public async Task <ActionResult> Index()
         {
+            //var temoral
+            var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
+
             var bodega = await db.Bodega
                 .Include(b => b.Usuario)
                 .ToListAsync();
