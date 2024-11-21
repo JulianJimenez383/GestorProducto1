@@ -12,6 +12,8 @@ namespace GestorProductoBack.Model
 
         public IEnumerable<Producto> productos { get; set; }
 
+        public IEnumerable<Proveedor> proveedor { get; set; }
+
         public class MensajeViewModel
         {
             public string Mensaje { get; set; }

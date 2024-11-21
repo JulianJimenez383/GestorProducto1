@@ -4,31 +4,37 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using GestorProductoBack.Model;
+using GestorProductoBack.Repository;
 
 namespace GestorProducto1.Controllers
 {
     public class ProveedorsController : Controller
     {
         private InventarioDesarrolloWebEntities db = new InventarioDesarrolloWebEntities();
+        GestorRepository<Proveedor> data = new GestorRepository<Proveedor>();
+
 
         // GET: Proveedors
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var proveedor = db.Proveedor.Include(p => p.Usuario);
+            var proveedor = await db.Proveedor
+               .Include(b => b.Usuario)
+               .ToListAsync();
             return View(proveedor.ToList());
         }
 
         // GET: Proveedors/Details/5
-        public ActionResult Details(string id)
+        public async Task <ActionResult> Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Proveedor proveedor = db.Proveedor.Find(id);
+            Proveedor proveedor = await data.GetById(id);
             if (proveedor == null)
             {
                 return HttpNotFound();
@@ -48,11 +54,11 @@ namespace GestorProducto1.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdProveedor,NombreProveedor,DireccionProveedor,TelefonoProveedor,CorreoProveedor,IdUsuario")] Proveedor proveedor)
+        public async Task<ActionResult> Create([Bind(Include = "IdProveedor,NombreProveedor,DireccionProveedor,TelefonoProveedor,CorreoProveedor,IdUsuario")] Proveedor proveedor)
         {
             if (ModelState.IsValid)
             {
-                db.Proveedor.Add(proveedor);
+                await data.Create(proveedor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -62,13 +68,13 @@ namespace GestorProducto1.Controllers
         }
 
         // GET: Proveedors/Edit/5
-        public ActionResult Edit(string id)
+        public async Task <ActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Proveedor proveedor = db.Proveedor.Find(id);
+            Proveedor proveedor = await data.GetById(id);
             if (proveedor == null)
             {
                 return HttpNotFound();
@@ -82,11 +88,11 @@ namespace GestorProducto1.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdProveedor,NombreProveedor,DireccionProveedor,TelefonoProveedor,CorreoProveedor,IdUsuario")] Proveedor proveedor)
+        public async Task <ActionResult> Edit([Bind(Include = "IdProveedor,NombreProveedor,DireccionProveedor,TelefonoProveedor,CorreoProveedor,IdUsuario")] Proveedor proveedor)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(proveedor).State = EntityState.Modified;
+                await data.Update(proveedor); 
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -95,13 +101,13 @@ namespace GestorProducto1.Controllers
         }
 
         // GET: Proveedors/Delete/5
-        public ActionResult Delete(string id)
+        public async Task <ActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Proveedor proveedor = db.Proveedor.Find(id);
+            Proveedor proveedor = await data.GetById(id);
             if (proveedor == null)
             {
                 return HttpNotFound();
@@ -112,10 +118,10 @@ namespace GestorProducto1.Controllers
         // POST: Proveedors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public async Task <ActionResult> DeleteConfirmed(string id)
         {
-            Proveedor proveedor = db.Proveedor.Find(id);
-            db.Proveedor.Remove(proveedor);
+            Proveedor proveedor = await data.GetById(id);
+            await data.Delete(proveedor);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
