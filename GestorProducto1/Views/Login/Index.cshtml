@@ -51,177 +51,29 @@
                     </div>
                     <br />
                     <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-                    <asp:Label name="labelMensaje" runat="server" Text=""></asp:Label>                  
-                    
-                    </form>
+                    <asp:Label name="labelMensaje" runat="server" Text=""></asp:Label>
+
+                </form>
 
 
-
-                <!--  CREACION DE MODAL PARA EL REGISTRO DE UN USUARIO  -->
-                <div class="text-center text-lg-start mt-4 pt-2">
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#crear" class="btn btn-secondary "
-                            style="padding-left: 2.5rem; padding-right: 2.5rem;">
-                        Registrarse
-                    </button>
-
-                    <div class="modal fade" id="crear" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <a class="navbar-brand" href="#">
-                                        <img src="~/Imagenes/PC.png" alt="" width="45" height="35" class="d-inline-block align-text-top">
-                                    </a>
-                                    <h5 class="modal-title" id="exampleModalToggleLabel">REGISTRO</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <!--  CONTENIDO DEL REGISTRO DE USUARIO -->
-                                    <div class="container text-center">
-                                        <div class="row justify-content-md-center">
-                                            <div class="col-md-auto">
-
-                                                <br />
-                                                <div class="">
-                                                    <label runat="server" id="label1" class="form-label"> IdUsuario </label>
-                                                    <input runat="server" type="text" class="form-control" id="inputCedula" placeholder="id" />
-                                                </div>
-                                                <br />
-                                                <div class="">
-                                                    <label runat="server" id="label2" class="form-label">Nombre: </label>
-                                                    <input runat="server" type="text" class="form-control" id="inputNombre" placeholder="nombre" />
-                                                </div>
-                                                <br />
-                                                <div class="">
-                                                    <label runat="server" id="label3" class="form-label"> Apellido </label>
-                                                    <input runat="server" type="text" class="form-control" id="inputApellido" placeholder="apellido" />
-                                                </div>
-                                                <br />
-                                                <div class="">
-                                                    <label runat="server" id="label4" class="form-label">Correo: </label>
-                                                    <input runat="server" type="email" class="form-control" id="inputCorreo" placeholder="correo" />
-                                                </div>
-                                                <br />
-                                                <div class="">
-                                                    <label runat="server" id="label6" class="form-label">Fecha Nacimiento</label>
-                                                    <input runat="server" type="password" class="form-control" id="inputContraseña1" placeholder="fecha nacimiento" />
-                                                </div>
-                                                <br />
-                                                <div class="">
-                                                    <label runat="server" id="label5" class="form-label">Contraseña</label>
-                                                    <input runat="server" type="password" class="form-control" id="inputContraseña" placeholder="contraseña" />
-                                                </div>
-                                                <br />
-                                                <div class="">
-                                                    <label runat="server" id="label7" class="form-label">Contraseña: </label>
-                                                    <input runat="server" type="password" class="form-control" id="inputContraseña1" placeholder="confirme contraseña" />
-                                                </div>
-                                                <br />
-                                                <div class="">
-                                                    <label id="label7" for="inputState" class="form-label">Cargo</label>
-                                                    <select id="input8" runat="server" class="form-select" type="text">
-                                                        <option value="">--Selecciona una Opcion--</option>
-                                                        <option value="">Jefe Bodega</option>
-                                                        <option value="">Almacenista</option>
-                                                        <option value="Puebas">Puebas</option>
-                                                    </select>
-                                                </div>
-                                                <br />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
-                                    <br />
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    &nbsp;</p>
-
-                    &nbsp;</p>
-                </div>
             </div>
-    </div>
-    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-secondary">
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
 
-        <div class="text-white mb-3 mb-md-0">
-            Gestor Inventario © 2025.
+        <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-secondary">
+
+            <div class="text-white mb-3 mb-md-0">
+                Gestor Inventario © 2025.
+            </div>
         </div>
     </div>
-        </div>
 </section>
 
-<!-- ESTE MODAL SE RECARGA CON LA RESPUESTA DEL SERVIDOR-->
-
-<div class="modal fade" id="exitoso" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="resgood">EJECUCION</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-
-                <div class="alert alert-success d-flex align-items-center" role="alert">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
-                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                    </svg>
-                    <div>
-                        <asp:Label ID="Label9" runat="server" Text=" "></asp:Label>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ESTE MODAL SE RECARGA CON LA RESPUESTA DEL SERVIDOR CON ERROR-->
-
-<div class="modal fade" id="error" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="resbadlabel">EJECUCION</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="alert alert-danger d-flex align-items-center" role="alert">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
-                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                    </svg>
-                    <div>
-                        <asp:Label ID="Label10" runat="server" Text=" "></asp:Label>
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
-<!-- SCRIPT PARA VER EL MODAL -->
-<script type="text/javascript">
-    function modalExito() {
-        var modal = new bootstrap.Modal(document.getElementById('exitoso'));
-        modal.show();
-    }
-    function modalFallo() {
-        var modal = new bootstrap.Modal(document.getElementById('error'));
-        modal.show();
-    }
-</script>
-<asp:Literal ID="modalEjecucion" runat="server"> </asp:Literal>
+
 
