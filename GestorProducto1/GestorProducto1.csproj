@@ -129,7 +129,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BodegasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InicioSesionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductoesController.cs" />
     <Compile Include="Controllers\RecuperarContraseñaController.cs" />
@@ -2082,7 +2081,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="App_Themes\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\InicioSesion\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
