@@ -4,15 +4,17 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Lista Usuarios</h2>
 
+<button class="btn-success" @Html.ActionLink("Nuevo Usuario", "Create")    
+</button>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nuevo Usuario", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Password)
+            @Html.DisplayNameFor(model => model.IdUsuario)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.NombreUsuario)
@@ -35,7 +37,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Password)
+            @Html.DisplayFor(modelItem => item.IdUsuario)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NombreUsuario)
