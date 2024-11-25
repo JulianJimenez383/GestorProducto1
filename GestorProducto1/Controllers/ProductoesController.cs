@@ -49,8 +49,10 @@ namespace GestorProducto1.Controllers
         // GET: Productoes/Create
         public ActionResult Create()
         {
+            var usuario = Session["usuario"] as Usuario;
             ViewBag.IdBodega = new SelectList(db.Bodega, "IdBodega", "IdBodega");
             ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "IdUsuario");
+
             return View();
 
         }
@@ -62,12 +64,29 @@ namespace GestorProducto1.Controllers
         [ValidateAntiForgeryToken]
         public async Task <ActionResult> Create([Bind(Include = "IdProducto,IdBodega,NombreProducto,DescripcionProducto,CostoProducto,PrecioVentaProducto,StockProducto,CategoriaProducto,IdUsuario")] Producto producto)
         {
+            var usuario = Session["usuario"] as Usuario;
             if (ModelState.IsValid)
             {
                 await data.Create(producto);
                 db.SaveChanges();
+                if(producto != null) 
+                { 
+                var mov = new GuardarM
+                {
+                    IdModificar = producto.IdProducto,
+                    FechaModificacion = DateTime.Now.ToString("dd / MM / yyyy hh: mm:ss tt"),
+                    IdUsuario = usuario.IdUsuario,
+                    NombreUsuario = usuario.NombreUsuario,
+                    IdProducto = producto.IdProducto,
+                    NombreProducto = producto.NombreProducto,  
+                    AccionModificacion = $"Producto '{producto.NombreProducto}' creado por el usuario con ID {producto.IdUsuario}."
+                };
+                    db.GuardarM.Add(mov);
+                    db.SaveChanges();
+                };
+
                 return RedirectToAction("Index");
-            }
+            };
 
             ViewBag.IdBodega = new SelectList(db.Bodega, "IdBodega", "NombreBodega", producto.IdBodega);
             ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "Password", producto.IdUsuario);

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<GestorProductoBack.Model.GuardarM>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaModificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccionModificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Password)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaModificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccionModificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.Password)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdModificar }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdModificar }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdModificar })
+        </td>
+    </tr>
+}
+
+</table>

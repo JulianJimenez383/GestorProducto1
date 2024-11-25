@@ -22,7 +22,7 @@ namespace GestorProducto1.Controllers
         // GET: Login
         public ActionResult Index(string cedula , string contra)
             {
-            ViewBag.Fecha = DateTime.Now.ToString("dd / MM / yyyy hh: mm:ss tt"); //se  setea la fecha
+            //ViewBag.Fecha = DateTime.Now.ToString("dd / MM / yyyy hh: mm:ss tt"); //se  setea la fecha
 
             if (string.IsNullOrEmpty(cedula) || string.IsNullOrEmpty(contra))
             {
