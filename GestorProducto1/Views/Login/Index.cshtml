@@ -16,7 +16,7 @@
                 <br />
                 <br />
 
-                <h3>  &nbsp;</h3>
+                <h3 id="reloj"> <p> Fecha y hora actual: </p>  @ViewBag.FechaHora</h3>
                 <h3>  &nbsp;</h3>
                 <h3>
                     <label>Bienvenido a Gestor inventario</label>
@@ -66,7 +66,21 @@
         <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-secondary">
 
             <div class="text-white mb-3 mb-md-0">
-                Gestor Inventario © 2025.
+                Gestor Inventario © 2025
+               
+                
+                
+                <script>
+                    function actualizarReloj() {
+                        const now = new Date();
+                        document.getElementById("reloj").textContent = now.toLocaleString();
+                    }
+                    setInterval(actualizarReloj, 1000); // Actualiza cada segundo
+                    actualizarReloj();
+                </script>
+
+
+
             </div>
         </div>
     </div>
