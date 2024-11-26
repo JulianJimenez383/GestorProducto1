@@ -4,11 +4,13 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using GestorProductoBack.Model;
 using GestorProductoBack.Repository;
+
 
 namespace GestorProducto1.Controllers
 {
@@ -69,21 +71,23 @@ namespace GestorProducto1.Controllers
             {
                 await data.Create(producto);
                 db.SaveChanges();
-                if(producto != null) 
-                { 
-                var mov = new GuardarM
+                if (producto != null)
                 {
-                    IdModificar = producto.IdProducto,
-                    FechaModificacion = DateTime.Now.ToString("dd / MM / yyyy hh: mm:ss tt"),
-                    IdUsuario = usuario.IdUsuario,
-                    NombreUsuario = usuario.NombreUsuario,
-                    IdProducto = producto.IdProducto,
-                    NombreProducto = producto.NombreProducto,  
-                    AccionModificacion = $"Producto '{producto.NombreProducto}' creado por el usuario con ID {producto.IdUsuario}."
-                };
+                    var mov = new GuardarM
+                    {
+                        IdModificar = "1",//producto.IdProducto,
+                        FechaModificacion = "1",  //DateTime.Now.ToString("dd / MM / yyyy hh: mm:ss tt"),
+                        IdUsuario =  usuario.IdUsuario,
+                        NombreUsuario = usuario.NombreUsuario,
+                        IdProducto = producto.IdProducto,
+                        NombreProducto = producto.NombreProducto,
+                        AccionModificacion = "1", //$"Producto '{producto.NombreProducto}' creado por el usuario con ID {producto.IdUsuario}."
+
+
+                    };
                     db.GuardarM.Add(mov);
-                    db.SaveChanges();
-                };
+                     db.SaveChanges();
+                }
 
                 return RedirectToAction("Index");
             };

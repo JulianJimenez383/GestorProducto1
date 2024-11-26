@@ -2,18 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
 namespace GestorProductoBack.Repository
 {
-    public class GestorRepository<T> : IGestorRepository<T> where T : class
+    public class GuardarM<T> : IGuardarM<T> where T : class
     {
         private InventarioDesarrolloWebEntities _dbContex = new InventarioDesarrolloWebEntities();
 
-        private DbSet<T> dbSet
+        public DbSet<T> dbSet
         {
             get
             {
@@ -38,21 +37,11 @@ namespace GestorProductoBack.Repository
             await _dbContex.SaveChangesAsync();
         }
 
-        public async Task Update(T entity)
-        {
-            dbSet.AddOrUpdate(entity);
-            await _dbContex.SaveChangesAsync();
-        }
-
-        public async Task Delete(T entity)
-        {
-            dbSet.Remove(entity);
-            await _dbContex.SaveChangesAsync();
-        }
-
         public void Dispose()
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

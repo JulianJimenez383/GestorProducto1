@@ -1,0 +1,83 @@
+﻿@model GestorProductoBack.Model.GuardarT
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GuardarT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechachaTransaccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechachaTransaccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApellidoUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApellidoUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdBodegaOrigen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdBodegaOrigen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdBodegaDestino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdBodegaDestino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto.IdBodega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producto.IdBodega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Password)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdTransaccion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

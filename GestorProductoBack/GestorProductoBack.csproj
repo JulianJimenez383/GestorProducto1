@@ -127,7 +127,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GestorRepository.cs" />
+    <Compile Include="Repository\GuardarM.cs" />
     <Compile Include="Repository\IGestorRepository.cs" />
+    <Compile Include="Repository\IGuardarM.cs" />
     <Compile Include="Repository\IInicioSesionRepository.cs" />
     <Compile Include="Repository\InicioSesionRepository.cs" />
   </ItemGroup>
