@@ -14,7 +14,7 @@ namespace GestorProductoBack.Model
     
     public partial class GuardarM
     {
-        public string IdModificar { get; set; }
+        public int IdModificar { get; set; }
         public string FechaModificacion { get; set; }
         public string IdUsuario { get; set; }
         public string NombreUsuario { get; set; }

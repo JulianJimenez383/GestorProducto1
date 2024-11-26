@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="c36760a8c72d4626be3c8583aac4228e" Name="Diagram1">
         <EntityTypeShape EntityType="InventarioDesarrolloWebModel.Bodega" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventarioDesarrolloWebModel.GuardarM" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="InventarioDesarrolloWebModel.GuardarT" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="InventarioDesarrolloWebModel.Producto" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="InventarioDesarrolloWebModel.Proveedor" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
@@ -14,11 +13,12 @@
         <EntityTypeShape EntityType="InventarioDesarrolloWebModel.Usuario" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
         <AssociationConnector Association="InventarioDesarrolloWebModel.FK_Bodega_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="InventarioDesarrolloWebModel.FK_Producto_Bodega" ManuallyRouted="false" />
-        <AssociationConnector Association="InventarioDesarrolloWebModel.FK_GuardarM_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="InventarioDesarrolloWebModel.FK_GuardarT_Producto" ManuallyRouted="false" />
         <AssociationConnector Association="InventarioDesarrolloWebModel.FK_GuardarT_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="InventarioDesarrolloWebModel.FK_Producto_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="InventarioDesarrolloWebModel.FK_Proveedor_Usuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="InventarioDesarrolloWebModel.GuardarM" Width="1.5" PointX="3" PointY="11.875" />
+        <AssociationConnector Association="InventarioDesarrolloWebModel.FK_GuardarM_Usuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

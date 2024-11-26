@@ -20,7 +20,7 @@ namespace GestorProductoBack.Repository
             }
         }
 
-        public async Task<T> GetById(string id)
+        public async Task<T> GetById(int id)
         {
             return await dbSet.FindAsync(id);
         }
@@ -36,7 +36,14 @@ namespace GestorProductoBack.Repository
             dbSet.Add(entity);
             await _dbContex.SaveChangesAsync();
         }
-
+        public async Task CreateGuardarM(GuardarM mov)
+        {
+            using (var context = new InventarioDesarrolloWebEntities())
+            {
+                context.GuardarM.Add(mov);
+                await context.SaveChangesAsync();
+            }
+        }
         public void Dispose()
         {
             throw new NotImplementedException();

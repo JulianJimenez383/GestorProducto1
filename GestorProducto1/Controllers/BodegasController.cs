@@ -16,6 +16,7 @@ namespace GestorProducto1.Controllers
     {
         private InventarioDesarrolloWebEntities db = new InventarioDesarrolloWebEntities();
         GestorRepository<Bodega> data = new GestorRepository<Bodega>();
+        GestorRepository<GuardarM> da = new GestorRepository<GuardarM>();
 
         // GET: Bodegas
         public async Task <ActionResult> Index()
@@ -33,6 +34,7 @@ namespace GestorProducto1.Controllers
         // GET: Bodegas/Details/5
         public async Task <ActionResult> Details(string id)
         {
+            var usuario = Session["usuario"] as Usuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -48,6 +50,7 @@ namespace GestorProducto1.Controllers
         // GET: Bodegas/Create
         public async Task<ActionResult> Create()
         {
+            var usuario = Session["usuario"] as Usuario;
             var bodegas = await db.Bodega.ToListAsync();
             var usuarios = await db.Usuario.ToListAsync();
 
@@ -63,10 +66,27 @@ namespace GestorProducto1.Controllers
         [ValidateAntiForgeryToken]
         public async Task <ActionResult> Create([Bind(Include = "IdBodega,NombreBodega,PaisBodega,DepartamentoBodega,CiudadBodega,IdUsuario")] Bodega bodega)
         {
+            var usuario = Session["usuario"] as Usuario;
             if (ModelState.IsValid)
             {
                 await data.Create(bodega);
                 db.SaveChanges();
+
+                var mov = new GuardarM
+                {
+
+                    FechaModificacion = DateTime.Now.ToString("dd / MM / yyyy hh: mm:ss tt"),
+                    IdUsuario = usuario.IdUsuario,
+                    NombreUsuario = usuario.NombreUsuario,
+                    IdProducto = bodega.IdUsuario,
+                    NombreProducto = bodega.NombreBodega,
+                    AccionModificacion = "CREACION"
+                };
+                await da.CreateGuardarM(mov);
+
+
+
+
                 return RedirectToAction("Index");
             }
 
@@ -77,6 +97,7 @@ namespace GestorProducto1.Controllers
         // GET: Bodegas/Edit/5
         public async Task <ActionResult> Edit(string id)
         {
+            var usuario = Session["usuario"] as Usuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -97,10 +118,24 @@ namespace GestorProducto1.Controllers
         [ValidateAntiForgeryToken]
         public async Task <ActionResult> Edit([Bind(Include = "IdBodega,NombreBodega,PaisBodega,DepartamentoBodega,CiudadBodega,IdUsuario")] Bodega bodega)
         {
+            var usuario = Session["usuario"] as Usuario;
             if (ModelState.IsValid)
             {
                 await data.Update(bodega);
                 db.SaveChanges();
+
+
+                var mov = new GuardarM
+                {
+
+                    FechaModificacion = DateTime.Now.ToString("dd / MM / yyyy hh: mm:ss tt"),
+                    IdUsuario = usuario.IdUsuario,
+                    NombreUsuario = usuario.NombreUsuario,
+                    IdProducto = bodega.IdUsuario,
+                    NombreProducto = bodega.NombreBodega,
+                    AccionModificacion = "EDICION"
+                };
+                await da.CreateGuardarM(mov);
                 return RedirectToAction("Index");
             }
             ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "Password", bodega.IdUsuario);
@@ -110,6 +145,7 @@ namespace GestorProducto1.Controllers
         // GET: Bodegas/Delete/5
         public async Task <ActionResult> Delete(string id)
         {
+            var usuario = Session["usuario"] as Usuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -127,9 +163,23 @@ namespace GestorProducto1.Controllers
         [ValidateAntiForgeryToken]
         public async Task  <ActionResult> DeleteConfirmed(string id)
         {
+            var usuario = Session["usuario"] as Usuario;
             Bodega bodega = await data.GetById(id);
             await data.Delete(bodega);
             db.SaveChanges();
+
+            var mov = new GuardarM
+            {
+
+                FechaModificacion = DateTime.Now.ToString("dd / MM / yyyy hh: mm:ss tt"),
+                IdUsuario = usuario.IdUsuario,
+                NombreUsuario = usuario.NombreUsuario,
+                IdProducto = bodega.IdUsuario,
+                NombreProducto = bodega.NombreBodega,
+                AccionModificacion = "ELIMINACION"
+            };
+            await da.CreateGuardarM(mov);
+
             return RedirectToAction("Index");
         }
 

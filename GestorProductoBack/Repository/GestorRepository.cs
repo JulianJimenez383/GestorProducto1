@@ -49,7 +49,14 @@ namespace GestorProductoBack.Repository
             dbSet.Remove(entity);
             await _dbContex.SaveChangesAsync();
         }
-
+        public async Task CreateGuardarM(GuardarM mov)
+        {
+            using (var context = new InventarioDesarrolloWebEntities())
+            {
+                context.GuardarM.Add(mov);
+                await context.SaveChangesAsync();
+            }
+        }
         public void Dispose()
         {
             throw new NotImplementedException();

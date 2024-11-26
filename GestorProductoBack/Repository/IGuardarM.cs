@@ -8,7 +8,7 @@ namespace GestorProductoBack.Repository
 {
     public interface IGuardarM<T> : IDisposable where T : class
     {
-        Task<T> GetById(string id);
+        Task<T> GetById(int id);
         Task<IEnumerable<T>> getAll();
         Task Create(T entity);
   

@@ -4,32 +4,25 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using GestorProductoBack.Model;
-using GestorProductoBack.Repository;
 
 namespace GestorProducto1.Controllers
 {
-    public class GuardarMsController : Controller
+    public class GuardarMController : Controller
     {
         private InventarioDesarrolloWebEntities db = new InventarioDesarrolloWebEntities();
-        GestorRepository<GuardarM> data = new GestorRepository<GuardarM>();
 
-        // GET: GuardarMs
-        public async Task<ActionResult> Index()
+        // GET: GuardarM
+        public ActionResult Index()
         {
-
-            var guardaM = await db.GuardarM
-               .Include(g => g.IdModificar)
-               .ToListAsync();
-
-            return View(guardaM.ToList());
+            var guardarM = db.GuardarM.Include(g => g.Usuario);
+            return View(guardarM.ToList());
         }
 
-        // GET: GuardarMs/Details/5
-        public ActionResult Details(string id)
+        // GET: GuardarM/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -43,14 +36,14 @@ namespace GestorProducto1.Controllers
             return View(guardarM);
         }
 
-        // GET: GuardarMs/Create
+        // GET: GuardarM/Create
         public ActionResult Create()
         {
             ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "Password");
             return View();
         }
 
-        // POST: GuardarMs/Create
+        // POST: GuardarM/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -68,8 +61,8 @@ namespace GestorProducto1.Controllers
             return View(guardarM);
         }
 
-        // GET: GuardarMs/Edit/5
-        public ActionResult Edit(string id)
+        // GET: GuardarM/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -84,7 +77,7 @@ namespace GestorProducto1.Controllers
             return View(guardarM);
         }
 
-        // POST: GuardarMs/Edit/5
+        // POST: GuardarM/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -101,8 +94,8 @@ namespace GestorProducto1.Controllers
             return View(guardarM);
         }
 
-        // GET: GuardarMs/Delete/5
-        public ActionResult Delete(string id)
+        // GET: GuardarM/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -116,10 +109,10 @@ namespace GestorProducto1.Controllers
             return View(guardarM);
         }
 
-        // POST: GuardarMs/Delete/5
+        // POST: GuardarM/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             GuardarM guardarM = db.GuardarM.Find(id);
             db.GuardarM.Remove(guardarM);
