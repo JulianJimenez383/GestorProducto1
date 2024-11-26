@@ -14,7 +14,7 @@ namespace GestorProductoBack.Model
     
     public partial class GuardarT
     {
-        public string IdTransaccion { get; set; }
+        public int IdTransaccion { get; set; }
         public string IdProducto { get; set; }
         public Nullable<int> CantidadProducto { get; set; }
         public string FechachaTransaccion { get; set; }

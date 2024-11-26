@@ -5,24 +5,27 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>MOVIMIENTO BODEGA</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear movimiento", "Create")
 </p>
-<table class="table">
+<table class="table table-striped table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CantidadProducto)
+            @Html.DisplayNameFor(model => model.IdTransaccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdProducto)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FechachaTransaccion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NombreUsuario)
+            @Html.DisplayNameFor(model => model.IdUsuario)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ApellidoUsuario)
+            @Html.DisplayNameFor(model => model.NombreUsuario)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IdBodegaOrigen)
@@ -30,47 +33,39 @@
         <th>
             @Html.DisplayNameFor(model => model.IdBodegaDestino)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Producto.IdBodega)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Usuario.Password)
-        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CantidadProducto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechachaTransaccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombreUsuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApellidoUsuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdBodegaOrigen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdBodegaDestino)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Producto.IdBodega)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Usuario.Password)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdTransaccion }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdTransaccion }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdTransaccion })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTransaccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechachaTransaccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdBodegaOrigen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdBodegaDestino)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdTransaccion }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdTransaccion }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdTransaccion })
+            </td>
+        </tr>
+    }
 
 </table>

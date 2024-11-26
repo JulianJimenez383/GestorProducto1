@@ -26,11 +26,11 @@ namespace GestorProductoBack.Model
         }
     
         public virtual DbSet<Bodega> Bodega { get; set; }
-        public virtual DbSet<GuardarT> GuardarT { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
         public virtual DbSet<Proveedor> Proveedor { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<GuardarM> GuardarM { get; set; }
+        public virtual DbSet<GuardarT> GuardarT { get; set; }
     }
 }

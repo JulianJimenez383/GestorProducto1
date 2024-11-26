@@ -32,7 +32,7 @@
           <Key>
             <PropertyRef Name="IdTransaccion" />
           </Key>
-          <Property Name="IdTransaccion" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IdTransaccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdProducto" Type="nvarchar" MaxLength="20" />
           <Property Name="CantidadProducto" Type="int" />
           <Property Name="FechachaTransaccion" Type="nvarchar" MaxLength="50" />
@@ -227,22 +227,6 @@
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Bodega_Usuario" FromRole="Bodega" ToRole="Usuario" />
           <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_Bodega" FromRole="Bodega" ToRole="Producto" />
         </EntityType>
-        <EntityType Name="GuardarT">
-          <Key>
-            <PropertyRef Name="IdTransaccion" />
-          </Key>
-          <Property Name="IdTransaccion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdProducto" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="CantidadProducto" Type="Int32" />
-          <Property Name="FechachaTransaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IdUsuario" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="NombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ApellidoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IdBodegaOrigen" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="IdBodegaDestino" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK_GuardarT_Producto" FromRole="GuardarT" ToRole="Producto" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK_GuardarT_Usuario" FromRole="GuardarT" ToRole="Usuario" />
-        </EntityType>
         <EntityType Name="Producto">
           <Key>
             <PropertyRef Name="IdProducto" />
@@ -257,8 +241,8 @@
           <Property Name="CategoriaProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdUsuario" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Bodega" Relationship="Self.FK_Producto_Bodega" FromRole="Producto" ToRole="Bodega" />
-          <NavigationProperty Name="GuardarT" Relationship="Self.FK_GuardarT_Producto" FromRole="Producto" ToRole="GuardarT" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Producto_Usuario" FromRole="Producto" ToRole="Usuario" />
+          <NavigationProperty Name="GuardarT" Relationship="InventarioDesarrolloWebModel.FK_GuardarT_Producto" FromRole="Producto" ToRole="GuardarT" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
@@ -294,10 +278,10 @@
           <Property Name="FechaNaciUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CargoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Bodega" Relationship="Self.FK_Bodega_Usuario" FromRole="Usuario" ToRole="Bodega" />
-          <NavigationProperty Name="GuardarT" Relationship="Self.FK_GuardarT_Usuario" FromRole="Usuario" ToRole="GuardarT" />
           <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_Usuario" FromRole="Usuario" ToRole="Producto" />
           <NavigationProperty Name="Proveedor" Relationship="Self.FK_Proveedor_Usuario" FromRole="Usuario" ToRole="Proveedor" />
           <NavigationProperty Name="GuardarM" Relationship="InventarioDesarrolloWebModel.FK_GuardarM_Usuario" FromRole="Usuario" ToRole="GuardarM" />
+          <NavigationProperty Name="GuardarT" Relationship="InventarioDesarrolloWebModel.FK_GuardarT_Usuario" FromRole="Usuario" ToRole="GuardarT" />
         </EntityType>
         <Association Name="FK_Bodega_Usuario">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
@@ -320,30 +304,6 @@
             </Principal>
             <Dependent Role="Producto">
               <PropertyRef Name="IdBodega" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GuardarT_Producto">
-          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
-          <End Role="GuardarT" Type="Self.GuardarT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Producto">
-              <PropertyRef Name="IdProducto" />
-            </Principal>
-            <Dependent Role="GuardarT">
-              <PropertyRef Name="IdProducto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GuardarT_Usuario">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
-          <End Role="GuardarT" Type="Self.GuardarT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="GuardarT">
-              <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -373,7 +333,6 @@
         </Association>
         <EntityContainer Name="InventarioDesarrolloWebEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bodega" EntityType="Self.Bodega" />
-          <EntitySet Name="GuardarT" EntityType="Self.GuardarT" />
           <EntitySet Name="Producto" EntityType="Self.Producto" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
@@ -385,14 +344,6 @@
           <AssociationSet Name="FK_Producto_Bodega" Association="Self.FK_Producto_Bodega">
             <End Role="Bodega" EntitySet="Bodega" />
             <End Role="Producto" EntitySet="Producto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GuardarT_Producto" Association="Self.FK_GuardarT_Producto">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="GuardarT" EntitySet="GuardarT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GuardarT_Usuario" Association="Self.FK_GuardarT_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="GuardarT" EntitySet="GuardarT" />
           </AssociationSet>
           <AssociationSet Name="FK_Producto_Usuario" Association="Self.FK_Producto_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -406,6 +357,15 @@
           <AssociationSet Name="FK_GuardarM_Usuario" Association="InventarioDesarrolloWebModel.FK_GuardarM_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="GuardarM" EntitySet="GuardarM" />
+          </AssociationSet>
+          <EntitySet Name="GuardarT" EntityType="InventarioDesarrolloWebModel.GuardarT" />
+          <AssociationSet Name="FK_GuardarT_Producto" Association="InventarioDesarrolloWebModel.FK_GuardarT_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="GuardarT" EntitySet="GuardarT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GuardarT_Usuario" Association="InventarioDesarrolloWebModel.FK_GuardarT_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="GuardarT" EntitySet="GuardarT" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="GuardarM">
@@ -433,6 +393,46 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="GuardarT">
+          <Key>
+            <PropertyRef Name="IdTransaccion" />
+          </Key>
+          <Property Name="IdTransaccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProducto" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CantidadProducto" Type="Int32" />
+          <Property Name="FechachaTransaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdUsuario" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApellidoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdBodegaOrigen" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IdBodegaDestino" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Producto" Relationship="InventarioDesarrolloWebModel.FK_GuardarT_Producto" FromRole="GuardarT" ToRole="Producto" />
+          <NavigationProperty Name="Usuario" Relationship="InventarioDesarrolloWebModel.FK_GuardarT_Usuario" FromRole="GuardarT" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_GuardarT_Producto">
+          <End Type="InventarioDesarrolloWebModel.Producto" Role="Producto" Multiplicity="0..1" />
+          <End Type="InventarioDesarrolloWebModel.GuardarT" Role="GuardarT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="GuardarT">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GuardarT_Usuario">
+          <End Type="InventarioDesarrolloWebModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+          <End Type="InventarioDesarrolloWebModel.GuardarT" Role="GuardarT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="GuardarT">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -448,21 +448,6 @@
                 <ScalarProperty Name="DepartamentoBodega" ColumnName="DepartamentoBodega" />
                 <ScalarProperty Name="CiudadBodega" ColumnName="CiudadBodega" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GuardarT">
-            <EntityTypeMapping TypeName="InventarioDesarrolloWebModel.GuardarT">
-              <MappingFragment StoreEntitySet="GuardarT">
-                <ScalarProperty Name="IdTransaccion" ColumnName="IdTransaccion" />
-                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
-                <ScalarProperty Name="CantidadProducto" ColumnName="CantidadProducto" />
-                <ScalarProperty Name="FechachaTransaccion" ColumnName="FechachaTransaccion" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
-                <ScalarProperty Name="ApellidoUsuario" ColumnName="ApellidoUsuario" />
-                <ScalarProperty Name="IdBodegaOrigen" ColumnName="IdBodegaOrigen" />
-                <ScalarProperty Name="IdBodegaDestino" ColumnName="IdBodegaDestino" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -527,6 +512,21 @@
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
                 <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
                 <ScalarProperty Name="IdModificar" ColumnName="IdModificar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GuardarT">
+            <EntityTypeMapping TypeName="InventarioDesarrolloWebModel.GuardarT">
+              <MappingFragment StoreEntitySet="GuardarT">
+                <ScalarProperty Name="IdBodegaDestino" ColumnName="IdBodegaDestino" />
+                <ScalarProperty Name="IdBodegaOrigen" ColumnName="IdBodegaOrigen" />
+                <ScalarProperty Name="ApellidoUsuario" ColumnName="ApellidoUsuario" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechachaTransaccion" ColumnName="FechachaTransaccion" />
+                <ScalarProperty Name="CantidadProducto" ColumnName="CantidadProducto" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdTransaccion" ColumnName="IdTransaccion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

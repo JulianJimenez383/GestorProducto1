@@ -2084,15 +2084,15 @@
     <Content Include="Views\Proveedors\Details.cshtml" />
     <Content Include="Views\Proveedors\Edit.cshtml" />
     <Content Include="Views\Proveedors\Index.cshtml" />
+    <Content Include="Views\GuardarM\Delete.cshtml" />
+    <Content Include="Views\GuardarM\Details.cshtml" />
+    <Content Include="Views\GuardarM\Edit.cshtml" />
+    <Content Include="Views\GuardarM\Index.cshtml" />
     <Content Include="Views\GuardarT\Create.cshtml" />
     <Content Include="Views\GuardarT\Delete.cshtml" />
     <Content Include="Views\GuardarT\Details.cshtml" />
     <Content Include="Views\GuardarT\Edit.cshtml" />
     <Content Include="Views\GuardarT\Index.cshtml" />
-    <Content Include="Views\GuardarM\Delete.cshtml" />
-    <Content Include="Views\GuardarM\Details.cshtml" />
-    <Content Include="Views\GuardarM\Edit.cshtml" />
-    <Content Include="Views\GuardarM\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

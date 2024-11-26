@@ -5,12 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h3>MOVIMIENTOS</h3>
+<br />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table class="table table-striped table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.IdModificar)
@@ -30,27 +28,28 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdModificar)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaModificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombreUsuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombreProducto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccionModificacion)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.IdModificar }) |
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdModificar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaModificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccionModificacion)
+            </td>
+            <td>
+                @Html.ActionLink("Detalles", "Details", new { id = item.IdModificar }, new { @class = "btn btn-primary" }) 
+            </td>
+        </tr>
+    }
 
 </table>

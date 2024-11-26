@@ -18,10 +18,10 @@ namespace GestorProductoBack.Model
         public Usuario()
         {
             this.Bodega = new HashSet<Bodega>();
-            this.GuardarT = new HashSet<GuardarT>();
             this.Producto = new HashSet<Producto>();
             this.Proveedor = new HashSet<Proveedor>();
             this.GuardarM = new HashSet<GuardarM>();
+            this.GuardarT = new HashSet<GuardarT>();
         }
     
         public string IdUsuario { get; set; }
@@ -35,12 +35,12 @@ namespace GestorProductoBack.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bodega> Bodega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GuardarT> GuardarT { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Producto> Producto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Proveedor> Proveedor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GuardarM> GuardarM { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GuardarT> GuardarT { get; set; }
     }
 }

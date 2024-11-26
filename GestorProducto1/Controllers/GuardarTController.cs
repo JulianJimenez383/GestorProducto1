@@ -17,17 +17,13 @@ namespace GestorProducto1.Controllers
         // GET: GuardarT
         public ActionResult Index()
         {
-            var usuario = Session["usuario"] as Usuario;
-            ViewBag.Nombre = usuario.NombreUsuario;
             var guardarT = db.GuardarT.Include(g => g.Producto).Include(g => g.Usuario);
             return View(guardarT.ToList());
         }
 
         // GET: GuardarT/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
-            var usuario = Session["usuario"] as Usuario;
-            ViewBag.Nombre = usuario.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -43,10 +39,8 @@ namespace GestorProducto1.Controllers
         // GET: GuardarT/Create
         public ActionResult Create()
         {
-            var usuario = Session["usuario"] as Usuario;
-            ViewBag.Nombre = usuario.NombreUsuario;
-            ViewBag.IdProducto = new SelectList(db.Producto, "IdProducto", "IdBodega");
-            ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "Password");
+            ViewBag.IdProducto = new SelectList(db.Producto, "IdProducto", "IdProducto");
+            ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "IdUsuario");
             return View();
         }
 
@@ -57,8 +51,7 @@ namespace GestorProducto1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdTransaccion,IdProducto,CantidadProducto,FechachaTransaccion,IdUsuario,NombreUsuario,ApellidoUsuario,IdBodegaOrigen,IdBodegaDestino")] GuardarT guardarT)
         {
-            var usuario = Session["usuario"] as Usuario;
-            ViewBag.Nombre = usuario.NombreUsuario;
+            
             if (ModelState.IsValid)
             {
                 db.GuardarT.Add(guardarT);
@@ -66,16 +59,14 @@ namespace GestorProducto1.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdProducto = new SelectList(db.Producto, "IdProducto", "IdBodega", guardarT.IdProducto);
-            ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "Password", guardarT.IdUsuario);
+            ViewBag.IdProducto = new SelectList(db.Producto, "IdProducto", "IdProducto", guardarT.IdProducto);
+            ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "IdUsuario", guardarT.IdUsuario);
             return View(guardarT);
         }
 
         // GET: GuardarT/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
-            var usuario = Session["usuario"] as Usuario;
-            ViewBag.Nombre = usuario.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -97,8 +88,6 @@ namespace GestorProducto1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdTransaccion,IdProducto,CantidadProducto,FechachaTransaccion,IdUsuario,NombreUsuario,ApellidoUsuario,IdBodegaOrigen,IdBodegaDestino")] GuardarT guardarT)
         {
-            var usuario = Session["usuario"] as Usuario;
-            ViewBag.Nombre = usuario.NombreUsuario;
             if (ModelState.IsValid)
             {
                 db.Entry(guardarT).State = EntityState.Modified;
@@ -111,10 +100,8 @@ namespace GestorProducto1.Controllers
         }
 
         // GET: GuardarT/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
-            var usuario = Session["usuario"] as Usuario;
-            ViewBag.Nombre = usuario.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -130,10 +117,8 @@ namespace GestorProducto1.Controllers
         // POST: GuardarT/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            var usuario = Session["usuario"] as Usuario;
-            ViewBag.Nombre = usuario.NombreUsuario;
             GuardarT guardarT = db.GuardarT.Find(id);
             db.GuardarT.Remove(guardarT);
             db.SaveChanges();
