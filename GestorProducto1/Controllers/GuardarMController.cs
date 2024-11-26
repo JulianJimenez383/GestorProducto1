@@ -17,6 +17,8 @@ namespace GestorProducto1.Controllers
         // GET: GuardarM
         public ActionResult Index()
         {
+            var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             var guardarM = db.GuardarM.Include(g => g.Usuario);
             return View(guardarM.ToList());
         }
@@ -24,6 +26,8 @@ namespace GestorProducto1.Controllers
         // GET: GuardarM/Details/5
         public ActionResult Details(int? id)
         {
+            var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

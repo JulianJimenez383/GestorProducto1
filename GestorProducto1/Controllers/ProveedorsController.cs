@@ -23,6 +23,7 @@ namespace GestorProducto1.Controllers
         public async Task<ActionResult> Index()
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             var proveedor = await db.Proveedor
                .Include(b => b.Usuario)
                .ToListAsync();
@@ -33,6 +34,7 @@ namespace GestorProducto1.Controllers
         public async Task <ActionResult> Details(string id)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -49,6 +51,7 @@ namespace GestorProducto1.Controllers
         public ActionResult Create()
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "IdUsuario");
             return View();
         }
@@ -61,8 +64,10 @@ namespace GestorProducto1.Controllers
         public async Task<ActionResult> Create([Bind(Include = "IdProveedor,NombreProveedor,DireccionProveedor,TelefonoProveedor,CorreoProveedor,IdUsuario")] Proveedor proveedor)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (ModelState.IsValid)
             {
+                proveedor.IdUsuario = usuario.IdUsuario;
                 await data.Create(proveedor);
                 db.SaveChanges();
 
@@ -74,7 +79,7 @@ namespace GestorProducto1.Controllers
                     NombreUsuario = usuario.NombreUsuario,
                     IdProducto = proveedor.IdProveedor,
                     NombreProducto = proveedor.NombreProveedor,
-                    AccionModificacion = "CREACION"
+                    AccionModificacion = "CREACION PROVEEDOR"
                 };
                 await da.CreateGuardarM(mov);
                 return RedirectToAction("Index");
@@ -88,6 +93,7 @@ namespace GestorProducto1.Controllers
         public async Task <ActionResult> Edit(string id)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -109,8 +115,10 @@ namespace GestorProducto1.Controllers
         public async Task <ActionResult> Edit([Bind(Include = "IdProveedor,NombreProveedor,DireccionProveedor,TelefonoProveedor,CorreoProveedor,IdUsuario")] Proveedor proveedor)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (ModelState.IsValid)
             {
+                proveedor.IdUsuario = usuario.IdUsuario;
                 await data.Update(proveedor); 
                 db.SaveChanges();
 
@@ -122,7 +130,7 @@ namespace GestorProducto1.Controllers
                     NombreUsuario = usuario.NombreUsuario,
                     IdProducto = proveedor.IdProveedor,
                     NombreProducto = proveedor.NombreProveedor,
-                    AccionModificacion = "EDICION"
+                    AccionModificacion = "EDICION PROVEEDOR"
                 };
                 await da.CreateGuardarM(mov);
 
@@ -137,6 +145,7 @@ namespace GestorProducto1.Controllers
         public async Task <ActionResult> Delete(string id)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -155,6 +164,7 @@ namespace GestorProducto1.Controllers
         public async Task <ActionResult> DeleteConfirmed(string id)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             Proveedor proveedor = await data.GetById(id);
             await data.Delete(proveedor);
             db.SaveChanges();
@@ -167,7 +177,7 @@ namespace GestorProducto1.Controllers
                 NombreUsuario = usuario.NombreUsuario,
                 IdProducto = proveedor.IdProveedor,
                 NombreProducto = proveedor.NombreProveedor,
-                AccionModificacion = "ELIMINACION"
+                AccionModificacion = "ELIMINACION PROVEEDOR"
             };
             await da.CreateGuardarM(mov);
 

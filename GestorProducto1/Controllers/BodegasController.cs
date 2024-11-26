@@ -35,6 +35,7 @@ namespace GestorProducto1.Controllers
         public async Task <ActionResult> Details(string id)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -51,6 +52,7 @@ namespace GestorProducto1.Controllers
         public async Task<ActionResult> Create()
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             var bodegas = await db.Bodega.ToListAsync();
             var usuarios = await db.Usuario.ToListAsync();
 
@@ -67,8 +69,10 @@ namespace GestorProducto1.Controllers
         public async Task <ActionResult> Create([Bind(Include = "IdBodega,NombreBodega,PaisBodega,DepartamentoBodega,CiudadBodega,IdUsuario")] Bodega bodega)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (ModelState.IsValid)
             {
+                bodega.IdUsuario = usuario.IdUsuario;
                 await data.Create(bodega);
                 db.SaveChanges();
 
@@ -78,9 +82,9 @@ namespace GestorProducto1.Controllers
                     FechaModificacion = DateTime.Now.ToString("dd / MM / yyyy hh: mm:ss tt"),
                     IdUsuario = usuario.IdUsuario,
                     NombreUsuario = usuario.NombreUsuario,
-                    IdProducto = bodega.IdUsuario,
+                    IdProducto = bodega.IdBodega,
                     NombreProducto = bodega.NombreBodega,
-                    AccionModificacion = "CREACION"
+                    AccionModificacion = "CREACION BODEGA"
                 };
                 await da.CreateGuardarM(mov);
 
@@ -98,6 +102,7 @@ namespace GestorProducto1.Controllers
         public async Task <ActionResult> Edit(string id)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -119,8 +124,10 @@ namespace GestorProducto1.Controllers
         public async Task <ActionResult> Edit([Bind(Include = "IdBodega,NombreBodega,PaisBodega,DepartamentoBodega,CiudadBodega,IdUsuario")] Bodega bodega)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (ModelState.IsValid)
             {
+                bodega.IdUsuario = usuario.IdUsuario;
                 await data.Update(bodega);
                 db.SaveChanges();
 
@@ -131,9 +138,9 @@ namespace GestorProducto1.Controllers
                     FechaModificacion = DateTime.Now.ToString("dd / MM / yyyy hh: mm:ss tt"),
                     IdUsuario = usuario.IdUsuario,
                     NombreUsuario = usuario.NombreUsuario,
-                    IdProducto = bodega.IdUsuario,
+                    IdProducto = bodega.IdBodega,
                     NombreProducto = bodega.NombreBodega,
-                    AccionModificacion = "EDICION"
+                    AccionModificacion = "EDICION BODEGA"
                 };
                 await da.CreateGuardarM(mov);
                 return RedirectToAction("Index");
@@ -146,6 +153,7 @@ namespace GestorProducto1.Controllers
         public async Task <ActionResult> Delete(string id)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -164,6 +172,7 @@ namespace GestorProducto1.Controllers
         public async Task  <ActionResult> DeleteConfirmed(string id)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             Bodega bodega = await data.GetById(id);
             await data.Delete(bodega);
             db.SaveChanges();
@@ -174,9 +183,9 @@ namespace GestorProducto1.Controllers
                 FechaModificacion = DateTime.Now.ToString("dd / MM / yyyy hh: mm:ss tt"),
                 IdUsuario = usuario.IdUsuario,
                 NombreUsuario = usuario.NombreUsuario,
-                IdProducto = bodega.IdUsuario,
+                IdProducto = bodega.IdBodega,
                 NombreProducto = bodega.NombreBodega,
-                AccionModificacion = "ELIMINACION"
+                AccionModificacion = "ELIMINACION BODEGA"
             };
             await da.CreateGuardarM(mov);
 

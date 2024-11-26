@@ -39,6 +39,7 @@ namespace GestorProducto1.Controllers
                     return RedirectToAction("Index", "Home");   
                 }
             }
+            ViewBag.mensaje = "Usuario o contraseña incorrecto";
            return View();            
         }
     }          

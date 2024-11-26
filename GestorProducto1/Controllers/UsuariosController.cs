@@ -16,13 +16,15 @@ namespace GestorProducto1.Controllers
     {
         private InventarioDesarrolloWebEntities db = new InventarioDesarrolloWebEntities();
         GestorRepository<Usuario> data = new GestorRepository<Usuario>();
+        GestorRepository<GuardarM> da = new GestorRepository<GuardarM>();
 
         // GET: ver Usuarios
         public async Task<ActionResult> Index()
         {
             //var temoral
-            var usuario = Session["usuario"] as Usuario;
-            ViewBag.Nombre = usuario.NombreUsuario;
+
+            var usu = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usu.NombreUsuario;
 
             var usuarios = await db.Usuario.ToListAsync();
             return View(db.Usuario.ToList());
@@ -32,6 +34,8 @@ namespace GestorProducto1.Controllers
         // GET: Usuarios/Details/5
         public async Task<ActionResult> Details(string id)
         {
+            var usu = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usu.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -57,9 +61,23 @@ namespace GestorProducto1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "IdUsuario,Password,NombreUsuario,ApellidoUsuario,CorreoUsuario,FechaNaciUsuario,CargoUsuario")] Usuario usuario)
         {
+            var usu = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usu.NombreUsuario;
             if (ModelState.IsValid)
             {
                 await data.Create(usuario);
+
+                var mov = new GuardarM
+                {
+
+                    FechaModificacion = DateTime.Now.ToString("dd / MM / yyyy hh: mm:ss tt"),
+                    IdUsuario = usu.IdUsuario,
+                    NombreUsuario = usu.NombreUsuario,
+                    IdProducto = usuario.IdUsuario,
+                    NombreProducto = usuario.NombreUsuario,
+                    AccionModificacion = "CREACION USUARIO"
+                };
+                await da.CreateGuardarM(mov);
                 return RedirectToAction("Index");
             }
 
@@ -69,6 +87,8 @@ namespace GestorProducto1.Controllers
         // GET: Usuarios/Edit/5
         public async Task<ActionResult> Edit(string id)
         {
+            var usu = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usu.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -88,9 +108,25 @@ namespace GestorProducto1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "IdUsuario,Password,NombreUsuario,ApellidoUsuario,CorreoUsuario,FechaNaciUsuario,CargoUsuario")] Usuario usuario)
         {
+            var usu = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usu.NombreUsuario;
             if (ModelState.IsValid)
             {
                 await data.Update(usuario);
+
+                var mov = new GuardarM
+                {
+
+                    FechaModificacion = DateTime.Now.ToString("dd / MM / yyyy hh: mm:ss tt"),
+                    IdUsuario = usu.IdUsuario,
+                    NombreUsuario = usu.NombreUsuario,
+                    IdProducto = usuario.IdUsuario,
+                    NombreProducto = usuario.NombreUsuario,
+                    AccionModificacion = "EDICION USUARIO"
+                };
+                await da.CreateGuardarM(mov);
+
+
                 return RedirectToAction("Index");
             }
             return View(usuario);
@@ -99,6 +135,8 @@ namespace GestorProducto1.Controllers
         // GET: Usuarios/Delete/5
         public async Task<ActionResult> Delete(string id)
         {
+            var usu = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usu.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -116,8 +154,24 @@ namespace GestorProducto1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string id)
         {
+            var usu = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usu.NombreUsuario;
             Usuario usuario = await data.GetById(id);
             await data.Delete(usuario);
+
+            var mov = new GuardarM
+            {
+
+                FechaModificacion = DateTime.Now.ToString("dd / MM / yyyy hh: mm:ss tt"),
+                IdUsuario = usu.IdUsuario,
+                NombreUsuario = usu.NombreUsuario,
+                IdProducto = usuario.IdUsuario,
+                NombreProducto = usuario.NombreUsuario,
+                AccionModificacion = "ELIMINACION USUARIO"
+            };
+            await da.CreateGuardarM(mov);
+
+
             return RedirectToAction("Index");
         }
 

@@ -12,6 +12,13 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.IdModificar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdModificar)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.FechaModificacion)
         </dt>
 
@@ -51,17 +58,8 @@
             @Html.DisplayFor(model => model.AccionModificacion)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Usuario.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Usuario.Password)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdModificar }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("VOLVER", "Index")
 </p>

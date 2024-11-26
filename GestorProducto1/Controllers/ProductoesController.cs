@@ -39,6 +39,7 @@ namespace GestorProducto1.Controllers
         public async Task <ActionResult> Details(string id)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -55,6 +56,7 @@ namespace GestorProducto1.Controllers
         public ActionResult Create()
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             ViewBag.IdBodega = new SelectList(db.Bodega, "IdBodega", "IdBodega");
             ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "IdUsuario");
 
@@ -70,10 +72,11 @@ namespace GestorProducto1.Controllers
         public async Task<ActionResult> Create([Bind(Include = "IdProducto,IdBodega,NombreProducto,DescripcionProducto,CostoProducto,PrecioVentaProducto,StockProducto,CategoriaProducto,IdUsuario")] Producto producto)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (ModelState.IsValid)
             {
 
-
+                producto.IdUsuario = usuario.IdUsuario;
                 await data.Create(producto);
                 db.SaveChanges();
 
@@ -86,7 +89,7 @@ namespace GestorProducto1.Controllers
                     NombreUsuario = usuario.NombreUsuario,
                     IdProducto = producto.IdProducto,
                     NombreProducto = producto.NombreProducto,
-                    AccionModificacion = "CREACION"
+                    AccionModificacion = "CREACION PRODUCTOS"
                 };
                 await da.CreateGuardarM(mov);
                 return RedirectToAction("Index");
@@ -104,6 +107,7 @@ namespace GestorProducto1.Controllers
         public async Task <ActionResult> Edit(string id)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -127,8 +131,10 @@ namespace GestorProducto1.Controllers
         public async Task <ActionResult> Edit([Bind(Include = "IdProducto,IdBodega,NombreProducto,DescripcionProducto,CostoProducto,PrecioVentaProducto,StockProducto,CategoriaProducto,IdUsuario")] Producto producto)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (ModelState.IsValid)
             {
+               producto.IdUsuario = usuario.IdUsuario;
                 await data.Update(producto);
                 db.SaveChanges();
 
@@ -140,7 +146,7 @@ namespace GestorProducto1.Controllers
                     NombreUsuario = usuario.NombreUsuario,
                     IdProducto = producto.IdProducto,
                     NombreProducto = producto.NombreProducto,
-                    AccionModificacion = "EDICION"
+                    AccionModificacion = "EDICION PRODUCTOS"
                 };
                 await da.CreateGuardarM(mov);
 
@@ -157,6 +163,7 @@ namespace GestorProducto1.Controllers
         public async Task <ActionResult> Delete(string id)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -175,6 +182,7 @@ namespace GestorProducto1.Controllers
         public async Task <ActionResult> DeleteConfirmed(string id)
         {
             var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             Producto producto = await data.GetById(id);
             await data.Delete(producto);
             db.SaveChanges();
@@ -187,7 +195,7 @@ namespace GestorProducto1.Controllers
                 NombreUsuario = usuario.NombreUsuario,
                 IdProducto = producto.IdProducto,
                 NombreProducto = producto.NombreProducto,
-                AccionModificacion = "ELIMINACION"
+                AccionModificacion = "ELIMINACION PRODUCTOS"
             };
             await da.CreateGuardarM(mov);
 

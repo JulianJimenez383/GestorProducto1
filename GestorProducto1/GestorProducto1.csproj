@@ -2089,7 +2089,6 @@
     <Content Include="Views\GuardarT\Details.cshtml" />
     <Content Include="Views\GuardarT\Edit.cshtml" />
     <Content Include="Views\GuardarT\Index.cshtml" />
-    <Content Include="Views\GuardarM\Create.cshtml" />
     <Content Include="Views\GuardarM\Delete.cshtml" />
     <Content Include="Views\GuardarM\Details.cshtml" />
     <Content Include="Views\GuardarM\Edit.cshtml" />
