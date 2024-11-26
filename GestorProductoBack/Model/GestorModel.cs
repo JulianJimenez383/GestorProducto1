@@ -16,6 +16,8 @@ namespace GestorProductoBack.Model
 
         public IEnumerable<GuardarM> GuardarM { get; set; }
 
+        public IEnumerable<GuardarT> guardarT { get; set; }
+
         public class MensajeViewModel
         {
             public string Mensaje { get; set; }

@@ -4,31 +4,37 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using GestorProductoBack.Model;
+using GestorProductoBack.Repository;
 
 namespace GestorProducto1.Controllers
 {
     public class GuardarTController : Controller
     {
+        GestorRepository<Usuario> dataU = new GestorRepository<Usuario>();
+        GestorRepository<Bodega> data = new GestorRepository<Bodega>();
+        GestorRepository<GuardarT> da = new GestorRepository<GuardarT>();
         private InventarioDesarrolloWebEntities db = new InventarioDesarrolloWebEntities();
 
         // GET: GuardarT
-        public ActionResult Index()
+        public async Task <ActionResult> Index()
         {
             var guardarT = db.GuardarT.Include(g => g.Producto).Include(g => g.Usuario);
             return View(guardarT.ToList());
         }
 
         // GET: GuardarT/Details/5
-        public ActionResult Details(int? id)
+        public async Task <ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GuardarT guardarT = db.GuardarT.Find(id);
+            GuardarT guardarT = await da.GetById(id.ToString());
+            
             if (guardarT == null)
             {
                 return HttpNotFound();
@@ -37,8 +43,11 @@ namespace GestorProducto1.Controllers
         }
 
         // GET: GuardarT/Create
-        public ActionResult Create()
+        public async Task <ActionResult> Create()
         {
+            var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
+
             ViewBag.IdProducto = new SelectList(db.Producto, "IdProducto", "IdProducto");
             ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "IdUsuario");
             ViewBag.IdBodega = new SelectList(db.Bodega, "IdBodega", "IdBodega");
@@ -50,13 +59,29 @@ namespace GestorProducto1.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdTransaccion,IdProducto,CantidadProducto,FechachaTransaccion,IdUsuario,NombreUsuario,ApellidoUsuario,IdBodegaOrigen,IdBodegaDestino")] GuardarT guardarT)
+        public async Task<ActionResult> Create([Bind(Include = "IdTransaccion,IdProducto,CantidadProducto,FechachaTransaccion,IdUsuario,NombreUsuario,ApellidoUsuario,IdBodegaOrigen,IdBodegaDestino")] GuardarT guardarT)
         {
-            
+            var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
+
+
+
             if (ModelState.IsValid)
             {
-                db.GuardarT.Add(guardarT);
-                db.SaveChanges();
+
+                var guarT = new GuardarT
+                {
+                    IdUsuario = usuario.IdUsuario,
+                    FechachaTransaccion = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt"),
+                    NombreUsuario = usuario.NombreUsuario,
+                    ApellidoUsuario = usuario.ApellidoUsuario,
+                };
+                await da.Create(guarT);
+
+
+                //db.GuardarT.Add(guardarT);
+                //db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
