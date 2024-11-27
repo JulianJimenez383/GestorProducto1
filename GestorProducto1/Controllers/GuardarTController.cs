@@ -7,6 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Schema;
 using GestorProductoBack.Model;
 using GestorProductoBack.Repository;
 
@@ -14,27 +15,28 @@ namespace GestorProducto1.Controllers
 {
     public class GuardarTController : Controller
     {
-       
+
         GestorRepository<Bodega> data = new GestorRepository<Bodega>();
         GestorRepository<GuardarT> da = new GestorRepository<GuardarT>();
+        GestorRepository<Producto> pro = new GestorRepository<Producto>();
         private InventarioDesarrolloWebEntities db = new InventarioDesarrolloWebEntities();
 
         // GET: GuardarT
-        public async Task <ActionResult> Index()
+        public async Task<ActionResult> Index()
         {
             var guardarT = db.GuardarT.Include(g => g.Producto).Include(g => g.Usuario);
             return View(guardarT.ToList());
         }
 
         // GET: GuardarT/Details/5
-        public async Task <ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             GuardarT guardarT = await da.GetById(id.ToString());
-            
+
             if (guardarT == null)
             {
                 return HttpNotFound();
@@ -43,14 +45,14 @@ namespace GestorProducto1.Controllers
         }
 
         // GET: GuardarT/Create
-        public async Task <ActionResult> Create()
+        public async Task<ActionResult> Create()
         {
             var usuario = Session["usuario"] as Usuario;
             ViewBag.Nombre = usuario.NombreUsuario;
 
             ViewBag.IdProducto = new SelectList(db.Producto, "IdProducto", "IdProducto");
             ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "IdUsuario");
-            ViewBag.IdBodegaOrigen = new SelectList(db.Bodega, "IdBodegaOrigen", "IdBodega");
+            ViewBag.IdBodega = new SelectList(db.Bodega, "IdBodega", "IdBodega");
             return View();
         }
 
@@ -61,48 +63,141 @@ namespace GestorProducto1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "IdTransaccion,IdProducto,CantidadProducto,FechachaTransaccion,IdUsuario,NombreUsuario,ApellidoUsuario,IdBodegaOrigen,IdBodegaDestino")] GuardarT guardarT)
         {
-            try 
+            try
             {
                 var usuario = Session["usuario"] as Usuario;
                 ViewBag.Nombre = usuario.NombreUsuario;
 
-                if (guardarT.IdBodegaOrigen == guardarT.IdBodegaDestino)
-                {
-                    throw new Exception("Bodega origen no puede ser igual a bodega destino");
-                   
-                }
-                /*  Consula linkq
-                var busca = new InventarioDesarrolloWebEntities();
 
-                busca.Producto = (from b in busca.Bodega
-                                  join p in busca.Producto on b.IdBodega equals p.IdBodega
-                                  where p.IdBodega.Contains(guardarT.IdBodegaOrigen)
-                                  select new 
-                                  {
-                                     
-
-                                      
-
-                                  });
-
-                */
                 if (ModelState.IsValid)
                 {
+                   
 
-                    guardarT.IdUsuario = usuario.IdUsuario;
-                    guardarT.FechachaTransaccion = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt");
-                    guardarT.NombreUsuario = usuario.NombreUsuario;
-                    guardarT.ApellidoUsuario = usuario.ApellidoUsuario;
+                    
+                    if (guardarT.IdBodegaOrigen != guardarT.IdBodegaDestino)
+                    {
+                        guardarT.IdUsuario = usuario.IdUsuario;
+                        guardarT.FechachaTransaccion = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt");
+                        guardarT.NombreUsuario = usuario.NombreUsuario;
+                        guardarT.ApellidoUsuario = usuario.ApellidoUsuario;
 
-                    await da.Create(guardarT);
-                    db.SaveChanges();
+                        //VALIDACION BODEGA ORIGEN
+                        var resultado = await db.Producto
+                        .Where(p => p.IdProducto == guardarT.IdProducto && p.IdBodega == guardarT.IdBodegaOrigen) // Filtro por los parámetros
+                        .Join(db.Bodega,
+                        producto => producto.IdBodega, // Clave externa en Productos
+                        bodega => bodega.IdBodega,     // Clave primaria en Bodegas
+                        (producto, bodega) => new
+                        {
+                            IdProducto = producto.IdProducto,
+                            NombreProducto = producto.NombreProducto,
+                            DescripcionProducto = producto.DescripcionProducto,
+                            PrecioVentaProducto = producto.PrecioVentaProducto,
+                            StockProducto = producto.StockProducto,
+                            IdBodega = bodega.IdBodega,
+                            NombreBodega = bodega.NombreBodega
+                        }).FirstOrDefaultAsync(); // Recuperar el primer resultado que cumpla las condiciones
+
+                        // Verificar si se encontró el resultado
+                        if (resultado == null)
+                        {
+                            ViewBag.Error1 = "No existe inventario en la bodega ";
+
+                            return RedirectToAction("Create");
+                        }
+
+                        int cantidadP = Convert.ToInt32(guardarT.CantidadProducto);
+                        int cantidadbd = Convert.ToInt32(resultado.StockProducto); //convertir stock de bd
+
+                        if (cantidadP > cantidadbd) 
+                        {
+                            ViewBag.Error1 = "cantidad a tranferir mayor a el stock ";
+
+                            return RedirectToAction("Create");
+                        }
+                        var act = db.Producto.FirstOrDefault(x => x.IdProducto == guardarT.IdProducto);
+                        act.StockProducto = cantidadbd - cantidadP;
+                        db.SaveChanges();
+                        
+
+                        // VALIDACION DE BODEGA DESTINO
+                        var resultado2 = await db.Producto
+                        .Where(p => p.IdProducto == guardarT.IdProducto && p.IdBodega == guardarT.IdBodegaDestino) // Filtro por los parámetros
+                        .Join(db.Bodega,
+                        producto => producto.IdBodega, // Clave externa en Productos
+                        bodega => bodega.IdBodega,     // Clave primaria en Bodegas
+                        (producto, bodega) => new
+                        {
+                            IdProducto = producto.IdProducto,
+                            NombreProducto = producto.NombreProducto,
+                            DescripcionProducto = producto.DescripcionProducto,
+                            PrecioVentaProducto = producto.PrecioVentaProducto,
+                            StockProducto = producto.StockProducto,
+                            IdBodega = bodega.IdBodega,
+                            NombreBodega = bodega.NombreBodega
+                        }).FirstOrDefaultAsync(); // Recuperar el primer resultado que cumpla las condiciones
+                        Console.WriteLine($"IdProducto: {guardarT.IdProducto}, IdBodegaDestino: {guardarT.IdBodegaDestino}");
+
+                        // Verificar si se encontró el resultado
+                        if (resultado2 == null)
+                        {
+                            var actualizado = new Producto
+                            {
+                                IdProducto = guardarT.IdProducto.ToString() + "B",
+                                IdBodega = guardarT.IdBodegaDestino,
+                                NombreProducto = resultado.NombreProducto,
+                                DescripcionProducto = resultado.DescripcionProducto,
+                                CostoProducto = act.CostoProducto,
+                                PrecioVentaProducto = act.PrecioVentaProducto,
+                                StockProducto = guardarT.CantidadProducto,
+                                CategoriaProducto = act.CategoriaProducto,
+                                IdUsuario = usuario.IdUsuario
 
 
-                    return RedirectToAction("Index");
+
+                            };
+                            await pro.Create(actualizado);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            var act2 = db.Producto.FirstOrDefault(x => x.IdProducto == guardarT.IdProducto);
+                            act2.StockProducto = cantidadbd + cantidadP;
+                            db.SaveChanges();
+
+                        }
+                        await da.Create(guardarT);
+                        db.SaveChanges();
+
+
+
+                        var mov = new GuardarM
+                        {
+
+                            FechaModificacion = DateTime.Now.ToString("dd / MM / yyyy hh: mm:ss tt"),
+                            IdUsuario = usuario.IdUsuario,
+                            NombreUsuario = usuario.NombreUsuario,
+                            IdProducto = guardarT.IdProducto,
+                            NombreProducto = guardarT.IdBodegaDestino,
+                            AccionModificacion = "TRASLADO BODEGAS"
+                        };
+                        await da.CreateGuardarM(mov);
+
+
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Error1 = "Las bodega destino y origen no pueden ser iguales";
+
+                        return RedirectToAction("Create");
+                    }
+
                 }
 
 
-            } catch (Exception ex) 
+            }
+            catch (Exception ex)
             {
                 ViewBag.Error = ex;
             }
