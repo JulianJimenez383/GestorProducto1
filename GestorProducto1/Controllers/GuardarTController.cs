@@ -71,7 +71,21 @@ namespace GestorProducto1.Controllers
                     throw new Exception("Bodega origen no puede ser igual a bodega destino");
                    
                 }
-                
+                /*  Consula linkq
+                var busca = new InventarioDesarrolloWebEntities();
+
+                busca.Producto = (from b in busca.Bodega
+                                  join p in busca.Producto on b.IdBodega equals p.IdBodega
+                                  where p.IdBodega.Contains(guardarT.IdBodegaOrigen)
+                                  select new 
+                                  {
+                                     
+
+                                      
+
+                                  });
+
+                */
                 if (ModelState.IsValid)
                 {
 
@@ -87,8 +101,6 @@ namespace GestorProducto1.Controllers
                     return RedirectToAction("Index");
                 }
 
-
-                
 
             } catch (Exception ex) 
             {
