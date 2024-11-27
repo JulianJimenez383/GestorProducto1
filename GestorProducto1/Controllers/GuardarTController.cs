@@ -61,25 +61,39 @@ namespace GestorProducto1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "IdTransaccion,IdProducto,CantidadProducto,FechachaTransaccion,IdUsuario,NombreUsuario,ApellidoUsuario,IdBodegaOrigen,IdBodegaDestino")] GuardarT guardarT)
         {
-            var usuario = Session["usuario"] as Usuario;
-            ViewBag.Nombre = usuario.NombreUsuario;
-
-            if (ModelState.IsValid)
+            try 
             {
+                var usuario = Session["usuario"] as Usuario;
+                ViewBag.Nombre = usuario.NombreUsuario;
 
-                guardarT.IdUsuario = usuario.IdUsuario;
-                guardarT.FechachaTransaccion = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt");
-                guardarT.NombreUsuario = usuario.NombreUsuario;
-                guardarT.ApellidoUsuario = usuario.ApellidoUsuario;
+                if (guardarT.IdBodegaOrigen == guardarT.IdBodegaDestino)
+                {
+                    throw new Exception("Bodega origen no puede ser igual a bodega destino");
+                   
+                }
+                
+                if (ModelState.IsValid)
+                {
 
-               await da.Create(guardarT);
-                db.SaveChanges();
+                    guardarT.IdUsuario = usuario.IdUsuario;
+                    guardarT.FechachaTransaccion = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt");
+                    guardarT.NombreUsuario = usuario.NombreUsuario;
+                    guardarT.ApellidoUsuario = usuario.ApellidoUsuario;
+
+                    await da.Create(guardarT);
+                    db.SaveChanges();
 
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+
+
+                
+
+            } catch (Exception ex) 
+            {
+                ViewBag.Error = ex;
             }
-
-           
             return View(guardarT);
         }
 
