@@ -33,11 +33,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center">
-                <div class="sidebar-brand-icon rotate-n-15">
-
-                    <img src="~/Templates/img/undraw_profile_3.svg" alt="Alternate Text" />
-                </div>
-                <p>@ViewBag.Nombre</p>
+               
+                <p>Bienvenido : @ViewBag.Nombre</p>
             </a>
 
             <!-- Divider -->
@@ -45,9 +42,10 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <a class="collapse-item" @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "text-body" })</a>
+                
+                <a class="btn accordion-button bg-success" @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "button" })  >
+                   
+                    
 
                 </a>
             </li>
@@ -57,7 +55,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                Bienvenido
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -65,13 +63,13 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Secciones</span>
+                    <span>Acciones</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Secciones:</h6>
                         <a class="collapse-item" @Html.ActionLink("Bodegas", "Index", "Bodegas", null, new { @class = "text-body" })</a>
-                        <a class="collapse-item" @Html.ActionLink("Movimiento Bodegas", "Index", "GuardarT", null, new { @class = "text-body" })</a>
+     
                         <a class="collapse-item" @Html.ActionLink("Productos", "Index", "Productoes", null, new { @class = "text-body" })</a>
                         <a class="collapse-item" @Html.ActionLink("Proveedores", "Index", "Proveedors", null, new { @class = "text-body" })</a>
 
@@ -79,14 +77,31 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseP"
+                   aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Utilidades</span>
+                </a>
+                <div id="collapseP" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Movimientos:</h6>
+                        <a class="collapse-item" @Html.ActionLink("Transferencia", "Index", "GuardarT", null, new { @class = "text-body" })</a>
+                    </div>
+                </div>
+            </li>
+
+
+
+
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree"
                    aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Configuracion</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseTree" class="collapse" aria-labelledby="headingUtilities"
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header"> Administracion:</h6>
@@ -109,15 +124,13 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Secciones:</h6>
-                        <a class="collapse-item" @Html.ActionLink("Movimientos Clientes", "Index", "GuardarM", null, new { @class = "text-body" })</a>
-                        
+                        <a class="collapse-item" @Html.ActionLink("Log Usuario", "Index", "GuardarM", null, new { @class = "text-body" })</a>
+
 
                     </div>
                 </div>
             </li>
             <!-- Nav Item - Tables -->
-            
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -233,15 +246,15 @@
                         </div>
                     </li>
 
-                    <!-- Nav Item - Messages -->
+                    <!-- Nav Item - Messages 
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-envelope fa-fw"></i>
-                            <!-- Counter - Messages -->
+                            <!-- Counter - Messages 
                             <span class="badge badge-danger badge-counter">7</span>
                         </a>
-                        <!-- Dropdown - Messages -->
+                         Dropdown - Messages -->
                        
 
                     <div class="topbar-divider d-none d-sm-block"></div>
@@ -267,8 +280,8 @@
                                 Configuraciones
                             </a>
                             <a class="dropdown-item" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"  ></i>
-                                Log
+                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                @Html.ActionLink("log", "Index", "GuardarM", null, new { @class = "text-body" })
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

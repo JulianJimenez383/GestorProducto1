@@ -24,6 +24,9 @@ namespace GestorProducto1.Controllers
         // GET: GuardarT
         public async Task<ActionResult> Index()
         {
+
+            var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             var guardarT = db.GuardarT.Include(g => g.Producto).Include(g => g.Usuario);
             return View(guardarT.ToList());
         }
@@ -31,12 +34,14 @@ namespace GestorProducto1.Controllers
         // GET: GuardarT/Details/5
         public async Task<ActionResult> Details(int? id)
         {
+
+            var usuario = Session["usuario"] as Usuario;
+            ViewBag.Nombre = usuario.NombreUsuario;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GuardarT guardarT = await da.GetById(id.ToString());
-
+            GuardarT guardarT = db.GuardarT.Find(id);
             if (guardarT == null)
             {
                 return HttpNotFound();
@@ -44,8 +49,9 @@ namespace GestorProducto1.Controllers
             return View(guardarT);
         }
 
-        // GET: GuardarT/Create
-        public async Task<ActionResult> Create()
+
+// GET: GuardarT/Create
+public async Task<ActionResult> Create()
         {
             var usuario = Session["usuario"] as Usuario;
             ViewBag.Nombre = usuario.NombreUsuario;
@@ -122,7 +128,7 @@ namespace GestorProducto1.Controllers
 
                         // VALIDACION DE BODEGA DESTINO
                         var resultado2 = await db.Producto
-                        .Where(p => p.IdProducto == guardarT.IdProducto && p.IdBodega == guardarT.IdBodegaDestino) // Filtro por los parámetros
+                        .Where(p => p.IdProducto == guardarT.IdProducto+"B" && p.IdBodega == guardarT.IdBodegaDestino) // Filtro por los parámetros
                         .Join(db.Bodega,
                         producto => producto.IdBodega, // Clave externa en Productos
                         bodega => bodega.IdBodega,     // Clave primaria en Bodegas
@@ -161,8 +167,8 @@ namespace GestorProducto1.Controllers
                         }
                         else
                         {
-                            var act2 = db.Producto.FirstOrDefault(x => x.IdProducto == guardarT.IdProducto);
-                            act2.StockProducto = cantidadbd + cantidadP;
+                            var act2 = db.Producto.FirstOrDefault(x => x.IdProducto == resultado2.IdProducto);
+                            act2.StockProducto = resultado2.StockProducto + cantidadP;
                             db.SaveChanges();
 
                         }
