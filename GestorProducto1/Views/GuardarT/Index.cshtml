@@ -61,9 +61,9 @@
                 @Html.DisplayFor(modelItem => item.IdBodegaDestino)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.IdTransaccion }) |
-                @Html.ActionLink("Details", "Details", new { id = item.IdTransaccion }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.IdTransaccion })
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdTransaccion }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Details", "Details", new { id = item.IdTransaccion }, new { @class = "btn btn-primary" }) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdTransaccion }, new { @class = "btn btn-danger" })
             </td>
         </tr>
     }
