@@ -50,7 +50,7 @@ namespace GestorProducto1.Controllers
 
             ViewBag.IdProducto = new SelectList(db.Producto, "IdProducto", "IdProducto");
             ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "IdUsuario");
-            ViewBag.IdBodega = new SelectList(db.Bodega, "IdBodega", "IdBodega");
+            ViewBag.IdBodegaOrigen = new SelectList(db.Bodega, "IdBodegaOrigen", "IdBodega");
             return View();
         }
 
@@ -79,10 +79,7 @@ namespace GestorProducto1.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdProducto = new SelectList(db.Producto, "IdProducto", "IdProducto", guardarT.IdProducto);
-            ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "IdUsuario", guardarT.IdUsuario);
-           // ViewBag.IdBodega = new SelectList(db.GuardarT, "IdBodegaOrigen", "IdBodegaOrigen", guardarT.IdBodegaOrigen);
-            //ViewBag.IdBodega = new SelectList(db.GuardarT, "IdBodegaDestino", "IdBodegaDestino", guardarT.IdBodegaDestino);
+           
             return View(guardarT);
         }
 
