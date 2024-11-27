@@ -1,6 +1,7 @@
 ﻿using GestorProductoBack.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,7 +14,7 @@ namespace GestorProducto1.Controllers
         {
             var usuario = Session["usuario"] as Usuario;
             ViewBag.Nombre = usuario.NombreUsuario;
-
+            ViewBag.Fecha = DateTime.Today;
             return View();
         }
 
