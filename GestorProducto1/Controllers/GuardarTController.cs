@@ -14,7 +14,7 @@ namespace GestorProducto1.Controllers
 {
     public class GuardarTController : Controller
     {
-        GestorRepository<Usuario> dataU = new GestorRepository<Usuario>();
+       
         GestorRepository<Bodega> data = new GestorRepository<Bodega>();
         GestorRepository<GuardarT> da = new GestorRepository<GuardarT>();
         private InventarioDesarrolloWebEntities db = new InventarioDesarrolloWebEntities();
@@ -64,30 +64,25 @@ namespace GestorProducto1.Controllers
             var usuario = Session["usuario"] as Usuario;
             ViewBag.Nombre = usuario.NombreUsuario;
 
-
-
             if (ModelState.IsValid)
             {
 
-                var guarT = new GuardarT
-                {
-                    IdUsuario = usuario.IdUsuario,
-                    FechachaTransaccion = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt"),
-                    NombreUsuario = usuario.NombreUsuario,
-                    ApellidoUsuario = usuario.ApellidoUsuario,
-                };
-                await da.Create(guarT);
+                guardarT.IdUsuario = usuario.IdUsuario;
+                guardarT.FechachaTransaccion = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt");
+                guardarT.NombreUsuario = usuario.NombreUsuario;
+                guardarT.ApellidoUsuario = usuario.ApellidoUsuario;
 
+               await da.Create(guardarT);
+                db.SaveChanges();
 
-                //db.GuardarT.Add(guardarT);
-                //db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
             ViewBag.IdProducto = new SelectList(db.Producto, "IdProducto", "IdProducto", guardarT.IdProducto);
             ViewBag.IdUsuario = new SelectList(db.Usuario, "IdUsuario", "IdUsuario", guardarT.IdUsuario);
-            ViewBag.IdBodega = new SelectList(db.Bodega, "IdBodega", "IdBodega", guardarT.IdBodegaOrigen);
+           // ViewBag.IdBodega = new SelectList(db.GuardarT, "IdBodegaOrigen", "IdBodegaOrigen", guardarT.IdBodegaOrigen);
+            //ViewBag.IdBodega = new SelectList(db.GuardarT, "IdBodegaDestino", "IdBodegaDestino", guardarT.IdBodegaDestino);
             return View(guardarT);
         }
 
