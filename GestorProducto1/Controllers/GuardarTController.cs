@@ -107,8 +107,8 @@ public async Task<ActionResult> Create()
                         // Verificar si se encontró el resultado
                         if (resultado == null)
                         {
-                            ViewBag.Error1 = "No existe inventario en la bodega ";
-
+                            ViewBag.ErrorMessage = "BODEGA ORIGEN NO ENCONTRADA";
+                            ViewBag.ShowErrorModal = true;
                             return RedirectToAction("Create");
                         }
 
@@ -117,7 +117,9 @@ public async Task<ActionResult> Create()
 
                         if (cantidadP > cantidadbd) 
                         {
-                            ViewBag.Error1 = "cantidad a tranferir mayor a el stock ";
+                            ViewBag.ErrorMessage = "cantidad a tranferir mayor a el stock";
+                            ViewBag.ShowErrorModal = true;
+                            //ViewBag.Error1 = "cantidad a tranferir mayor a el stock ";
 
                             return RedirectToAction("Create");
                         }
